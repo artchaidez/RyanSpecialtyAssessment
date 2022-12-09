@@ -1,13 +1,13 @@
 NOTE: TARGET_URL and API_KEY not added here, so if you are cloning or forking this repo, you will not be
 able to run the OppFi Tests
 
-Business requirements \
+Business requirements
 Oppfi has many business partners who provide us with potential customers looking for a loan.
 We have an endpoint that will decide whether to accept or decline potential customers. If the
 endpoint accepts a potential customer, an offer is included in the response.
 Some of the fields are required.
 
-Your Mission \
+Your Mission
 Using any language and any framework, you need to write automated tests that will call the
 offers endpoint.
 1. The API_KEY and TARGET_URL can not be hardcoded and committed to the repo.
@@ -26,14 +26,14 @@ or zip them up and give them to your recruiter.
 tests in a README or something. We might not be familiar with the framework you’re
 using.
 
-Technical Documentation \
+Technical Documentation
 We require 2 request headers in addition to the field parameters. “Content-Type:
 application/json” specifies that this is a JSON request. The header “x-api-key: API_KEY”
 contains your authentication token. The token is listed at the top of this document.
 
 The endpoint must be called with POST.
 
-Controlling accepted or denied leads: \
+Controlling accepted or denied leads:
 Our Test environment accepts any test data; however, you can use two social security numbers
 in particular for testing. Replace the following values in the sample request below.
 
@@ -43,13 +43,13 @@ Income: 100000
 
 Always Declined SSN: 123450000
 
-Sample Request \
+Sample Request
 This sample request will result in an offer. Change the SSN to get a declined response. And
 change the request fields to get an error (see Request JSON Field documentation below).
 URL: https://partner-test.opploans.com/api/lde/v4/offer
 Headers:
-● Content-Type: application/json
-● x-api-key: API_KEY
+  ● Content-Type: application/json
+  ● x-api-key: API_KEY
 
 Action: POST
 Body:
@@ -95,10 +95,10 @@ Body:
 },
 "requestedLoanAmount": 1500}
 
-Sample Response \
+Sample Response
 Note: Below is a sample accepted response. A declined response will not have any offers, the
 accepted field will be false, and the code will not be 201. (The code in the response is different
-from the https status code). \
+from the https status code).
 {
 "request": {
 "email": "test_customer@gmail.com",
