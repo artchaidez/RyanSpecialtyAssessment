@@ -10,21 +10,21 @@ Some of the fields are required.
 Your Mission
 Using any language and any framework, you need to write automated tests that will call the
 offers endpoint.
-1. The API_KEY and TARGET_URL can not be hardcoded and committed to the repo.
-They must be read as environment variables or using some other configurable option
-(like a command line argument).
-2. There should be a minimum of three tests.
-a. A test that gets an offer (accepted)
-b. A test where the customer is declined
-c. A test where the system doesn’t make a decision due to missing or malformed
-request data.
-3. The tests should assert that the data in the returned JSON payload in the response body
-is correct (especially the offers block).
-4. We need to see your code when done. So either give us a link to a Github repo or GIST,
-or zip them up and give them to your recruiter.
-5. We also need to be able to run the code - please include instructions for how to run your
-tests in a README or something. We might not be familiar with the framework you’re
-using.
+  1. The API_KEY and TARGET_URL can not be hardcoded and committed to the repo.
+  They must be read as environment variables or using some other configurable option
+  (like a command line argument).
+  2. There should be a minimum of three tests.
+    a. A test that gets an offer (accepted)
+    b. A test where the customer is declined
+    c. A test where the system doesn’t make a decision due to missing or malformed
+    request data.
+  3. The tests should assert that the data in the returned JSON payload in the response body
+  is correct (especially the offers block).
+  4. We need to see your code when done. So either give us a link to a Github repo or GIST,
+  or zip them up and give them to your recruiter.
+  5. We also need to be able to run the code - please include instructions for how to run your
+  tests in a README or something. We might not be familiar with the framework you’re
+  using.
 
 Technical Documentation
 We require 2 request headers in addition to the field parameters. “Content-Type:
@@ -37,7 +37,8 @@ Controlling accepted or denied leads:
 Our Test environment accepts any test data; however, you can use two social security numbers
 in particular for testing. Replace the following values in the sample request below.
 
-Always Accepted SSN: 123456780
+Always Accepted 
+SSN: 123456780
 State: FL
 Income: 100000
 
