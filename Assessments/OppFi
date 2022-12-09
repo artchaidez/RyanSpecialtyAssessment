@@ -185,7 +185,7 @@ url":"https://www.opploans.com/ptr/1234567/lead/7fj324a4-67a7-4335-8
 }]
 }
 
-Request JSON Fields \
+Request JSON Fields
 There are many more fields in the request than those listed below. For this exercise you do not
 need to worry about testing the input of any fields besides the ones listed below. (You can use
 the hardcoded data in the sample request for any fields not listed here on all tests).
