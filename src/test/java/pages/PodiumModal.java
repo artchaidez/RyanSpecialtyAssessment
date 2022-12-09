@@ -29,8 +29,6 @@ public class PodiumModal extends AutoBase {
 
     SeleniumControl locationText = new SeleniumControl(By.xpath("//*[@class='SendSmsPage__CurrentLocationName']"));
 
-    SeleniumControl addressText = new SeleniumControl(By.xpath("//*[@class='SendSmsPage__CurrentLocationAddress']"));
-
     SeleniumControl locationSearchBar = new SeleniumControl(By.xpath("//*[@name='Search Locations']"));
 
     SeleniumControl messageCharCount = new SeleniumControl(By.xpath("//*[contains(@stroke, '#3074dc')]"));
@@ -42,8 +40,7 @@ public class PodiumModal extends AutoBase {
         firstLocation.Click(5);
     }
 
-    public String GetFirstLocationText() throws Exception
-    {
+    public String GetFirstLocationText() {
         return firstLocation.getText();
     }
 
@@ -86,7 +83,7 @@ public class PodiumModal extends AutoBase {
     {
         String emptyMessageLocator = "M 50 0 A 50 50 0 0 1 50 0";
         String messageAttribute = messageCharCount.getAttribute("d");
-        Assert.assertFalse(emptyMessageLocator.equals(messageAttribute));
+        Assert.assertNotEquals(messageAttribute, emptyMessageLocator);
     }
 
     public void VerifyAllInputsComplete()
@@ -127,8 +124,7 @@ public class PodiumModal extends AutoBase {
         locationSearchBar.SetText(zipAddress, 5, null);
     }
 
-    public void VerifyCorrectLocationOpened(String data) throws Exception
-    {
+    public void VerifyCorrectLocationOpened(String data) {
         Assert.assertEquals(GetLocationInMessageModal(), data);
     }
 

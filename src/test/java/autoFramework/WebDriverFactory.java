@@ -13,7 +13,7 @@ public class WebDriverFactory extends AutoLogger{
 
     public WebDriver CreateSeleniumDriver()
     {
-        WebDriver _WebDriver = null;
+        WebDriver _WebDriver;
         Info("Creating WebDriver.....");
 
         _WebDriver = CreateWebDriver();

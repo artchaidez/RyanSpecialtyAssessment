@@ -2,23 +2,21 @@ package autoFramework;
 
 import com.google.gson.Gson;
 
-import com.google.gson.Gson;
-import org.apache.http.HttpStatus;
-
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class ApiTestBase extends AutoLogger {
+
+public class ApiBase extends AutoLogger {
 
     Gson gson = new Gson();
 
     // TODO: handle different Status Codes
-    /** Returns the class of a response body*/
+    /** Returns the class of a response body. Needs a wrapper method to determine which class is returned. */
     public HttpResponse<String> Post(Object parms, String resource, String apiKey) throws Exception {
 
-        HttpResponse<String> response = null;
+        HttpResponse<String> response;
 
         String jsonRequest = gson.toJson(parms);
 
@@ -36,7 +34,6 @@ public class ApiTestBase extends AutoLogger {
         }
         catch (Exception e)
         {
-            // TODO: should be using Info or something else?
             Info("Something went wrong with the POST.");
             throw new Exception("Caught Exception", e);
         }
@@ -67,7 +64,6 @@ public class ApiTestBase extends AutoLogger {
         }
         catch (Exception e)
         {
-            // TODO: should be using Info or something else?
             Info("Something went wrong with the POST.");
             throw new Exception("Caught Exception", e);
         }

@@ -11,7 +11,7 @@ public class AutoBase extends AutoLogger {
     protected static WebDriver webDriver;
     public SeleniumControl seleniumControl;
 
-    private WebDriverFactory webDriverFactory = new WebDriverFactory();
+    private final WebDriverFactory webDriverFactory = new WebDriverFactory();
 
     public void Sleep(int seconds) throws InterruptedException{
         if(seconds > 5)
@@ -28,18 +28,18 @@ public class AutoBase extends AutoLogger {
 
     public void GoToURL(String url)
     {
-        this.webDriver.navigate().to(url);
+        webDriver.navigate().to(url);
         Info("Navigating to " + url);
     }
 
     public void Quit()
     {
-        this.webDriver.quit();
+        webDriver.quit();
     }
 
     public void setWebDriver(WebDriver webDriver)
     {
-        this.webDriver = webDriver;
+        AutoBase.webDriver = webDriver;
     }
 
     public WebDriver getWebDriver()
@@ -49,19 +49,19 @@ public class AutoBase extends AutoLogger {
 
     public void switchToiFrame(String iFrameID)
     {
-        this.webDriver = webDriver.switchTo().frame(iFrameID);
+        webDriver = webDriver.switchTo().frame(iFrameID);
     }
 
     public void switchToMainFrame()
     {
-        this.webDriver = webDriver.switchTo().defaultContent();
+        webDriver = webDriver.switchTo().defaultContent();
     }
 
     public void switchToNewlyOpenTab()
     {
         ArrayList<String> allTabs = new ArrayList<>(webDriver.getWindowHandles());
         int lastTabIndex = allTabs.size() - 1;
-        this.webDriver = webDriver.switchTo().window(allTabs.get(lastTabIndex));
+        webDriver = webDriver.switchTo().window(allTabs.get(lastTabIndex));
         Info(String.format("Switched to newest tab: %s", this.webDriver.getTitle()));
     }
 }

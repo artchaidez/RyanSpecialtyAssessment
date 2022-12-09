@@ -1,16 +1,16 @@
 package apis;
 
 import apiModals.Offer;
-import autoFramework.ApiTestBase;
+import autoFramework.ApiBase;
 import com.google.gson.Gson;
-import org.apache.http.HttpStatus;
+
 import java.net.http.HttpResponse;
 
-public class OffersApi extends ApiTestBase {
+public class OffersApi extends ApiBase {
     Gson gson = new Gson();
     HttpResponse<String> response = null;
 
-    /** Wrapper method for the post call that returns the class of a response body*/
+    /** Wrapper method for the post call that returns the class Offer*/
     public Offer PostOffers(Offer offerRequest, String resource, String apiKey) throws Exception {
 
         try {

@@ -9,7 +9,7 @@ import java.util.*;
 
 public class AutoLogger {
 
-    private TestContextLogger testContextLogger = new TestContextLogger();
+    private final TestContextLogger testContextLogger = new TestContextLogger();
 
     private int stepNumber = 1;
 
@@ -19,7 +19,8 @@ public class AutoLogger {
 
     private String testName;
 
-    private List<Timespan> timeTakenList = new ArrayList<Timespan>() {};
+    private List<Timespan> timeTakenList = new ArrayList<>() {
+    };
 
     public String GetCurrentTestName()
     {
@@ -28,6 +29,7 @@ public class AutoLogger {
 
     public boolean IsCurrentTestPassed()
     {
+        //ToDo Learn and create a testManager Class
         return false;
     }
 
@@ -48,11 +50,13 @@ public class AutoLogger {
 
     public void Error(String message)
     {
+        //ToDo learn and create GetMessageWithTestName
         testContextLogger.Error(message);
     }
 
     public void Warning(String message)
     {
+        //ToDo learn and create GetMessageWithTestName
         testContextLogger.Warning(message);
     }
 
@@ -84,7 +88,8 @@ public class AutoLogger {
 
         try
         {
-            List<String> options = new ArrayList<String>() {};
+            List<String> options = new ArrayList<>() {
+            };
             options.add("actual");
             options.add("subject");
             options.add("Object");
@@ -138,4 +143,38 @@ public class AutoLogger {
     {
         stepNumber = 1;
     }
+
+    public void IgnoreTest(String message)
+    {
+        Warning(message);
+        //ToDo figure out how to ignore test
+    }
+
+    public void StartTest(String testName)
+    {
+        //ToDo Test execution context class, to get all test data
+        TestInfo context = null;
+
+        /*
+         * var description = something
+         *
+         * List<String> messages = new ArrayList<String>(){
+         * "==========================================================================",
+         * "     Starting test  :  " + context.CurrentTest.Name,
+         * "     Description    :  " + description,
+         * "=========================================================================="
+         * }
+         *
+         *
+         * for(String message : messages)
+         * {
+         * info(message);
+         * }
+         *
+         * setTestStatusToPass()
+         * stepNumber = 1;
+         * this.testName = context.Current.MethodName;
+         * */
+    }
+
 }

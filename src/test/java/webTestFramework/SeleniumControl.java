@@ -155,6 +155,7 @@ public class SeleniumControl extends AutoBase {
             }
 
             Thread.sleep(1000L);
+            Max_Retries--;
         }
 
         if (!textEntered)
@@ -200,7 +201,6 @@ public class SeleniumControl extends AutoBase {
             {
                 innerException = FormatException(e);
                 Info("Element not found, Retrying...");
-                continue;
             } catch (Exception e)
             {
                 Info(e.getMessage());
@@ -243,12 +243,7 @@ public class SeleniumControl extends AutoBase {
             else if (!element.isDisplayed())
             {
                 return false;
-            } else if (element.getAttribute("class") != null && element.getAttribute("class").contains("ng-hide"))
-            {
-                return false;
-            }
-            else
-                return true;
+            } else return element.getAttribute("class") == null || !element.getAttribute("class").contains("ng-hide");
         } catch (SeleniumException e)
         {
             Error(e.toString());
@@ -332,7 +327,6 @@ public class SeleniumControl extends AutoBase {
                 if (elements == null || elements.size() == 0)
                 {
                     elements = null;
-                    continue;
                 } else
                     break;
             } catch (Exception e) {
