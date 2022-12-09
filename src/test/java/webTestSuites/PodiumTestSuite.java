@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import pages.Pages;
 import webTestFramework.SeleniumControl;
 
-public class PodiumTestCases extends Pages {
+public class PodiumTestSuite extends Pages {
 
     @BeforeMethod
     public void TestSetUp()
@@ -20,6 +20,7 @@ public class PodiumTestCases extends Pages {
     public void TestTearDown()
     {
         Quit();
+        ResetSteps();
     }
 
     @Test (groups = {"smokeTest"})

@@ -2,7 +2,7 @@ NOTE: TARGET_URL and API_KEY not added here, so if you are cloning or forking th
 able to run the OppFi Tests
 
 Business requirements
-Oppfi has many business partners who provide us with potential customers looking for a loan.
+OppFi has many business partners who provide us with potential customers looking for a loan.
 We have an endpoint that will decide whether to accept or decline potential customers. If the
 endpoint accepts a potential customer, an offer is included in the response.
 Some of the fields are required.
