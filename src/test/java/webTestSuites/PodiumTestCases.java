@@ -1,4 +1,4 @@
-package webTests;
+package webTestSuites;
 
 import jdk.jfr.Description;
 import org.openqa.selenium.By;

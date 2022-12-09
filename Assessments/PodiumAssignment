@@ -1,0 +1,35 @@
+Assignment:
+Podium strives to help local businesses connect to their customers. We have an
+important flow they use to receive messages from customers directly. We would like
+you to build an automation test suite covering core user flows for our webchat widget
+product, ensuring it works for users. In a plot twist, please do not test the happy path of
+submitting a completed valid form, but instead test right up to before submitting an
+official form.
+
+Webchat widget to automate can be found here:
+https://demo.podium.tools/qa-webchat-lorw/
+
+*Note: There are only 4 locations available, no other locations will be populated based
+on the search input.
+
+We would like you to use one of the following frameworks/languages for this
+assignment:
+● Selenium + Java or Python
+● Cypress + Javascript
+
+We would also like to be able to run your suite locally, from the command line, and we
+use Mac computers, so be sure to make your suite as OS-agnostic as possible. If any
+configuration is needed before we can run it, ensure that it's covered clearly in the
+documentation. Github repo is preferred, and documentation in the readme is fine.
+
+Deliverables:
+● An executable automated test suite, consisting of at least 5 test cases
+● Readme file
+
+Extra Credit:
+● Dockerized test job for easy execution (include dockerfile)
+● Test cases identified in prioritization, including smoke vs. regression
+● Identify any bugs (if found)
+
+The exercise should take no longer than 3-4 hours, but you have a week to complete. Let
+us know if you have any questions, good luck!

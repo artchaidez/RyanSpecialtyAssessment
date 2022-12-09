@@ -2,6 +2,7 @@ package autoFramework;
 
 import jdk.jfr.Timespan;
 
+import java.net.http.HttpResponse;
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -118,5 +119,17 @@ public class AutoLogger {
         testContextLogger.Step(message,stepNumber);
 
         stepNumber++;
+    }
+
+    // TODO: rework
+    /** Used in Post to Log API info */
+    public void apiLog(HttpResponse<String> response, String requestBody)
+    {
+        String message = response.request().method() + ": " + response.uri() + "\n" +
+                "REQUEST BODY: " + requestBody + "\n" +
+                "STATUS CODE: " + response.statusCode() + "\n" +
+                "RESPONSE BODY: " + response.body();
+
+        Info(message);
     }
 }

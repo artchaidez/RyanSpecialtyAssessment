@@ -5,11 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="914d3150-6a39-41fb-9036-1bf9e1fb6f0b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/pages/Pages.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pages/PodiumBubble.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/pages/PodiumModal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/webTests/PodiumTestCases.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assessments/PodiumAssignment" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/apiModals/Address.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/apiModals/BankInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/apiModals/EmploymentInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/apiModals/IncomeInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/apiModals/Offer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/apiModals/PersonalInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/apiModals/Request.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/apis/OffersApi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/autoFramework/ApiTestBase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/autoFramework/AutoTestBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/autoFramework/AutoLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/autoFramework/AutoLogger.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,12 +53,17 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/artch/IdeaProjects/testframework",
+    "last_opened_file_path": "C:/Users/artch/IdeaProjects/OppFiTestAutomation",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\artch\IdeaProjects\QAFramework\Assessments" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="PodiumTestCases" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
