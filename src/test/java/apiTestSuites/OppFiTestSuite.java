@@ -2,6 +2,7 @@ package apiTestSuites;
 
 import apiModals.*;
 import apis.Apis;
+import jdk.jfr.Description;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeSuite;
@@ -9,7 +10,6 @@ import org.testng.annotations.Test;
 
 public class OppFiTestSuite extends Apis {
 
-    // TODO: provide this as env variables with TestSetUp()
     private String resource = null;
     private String apiKey = null;
 
@@ -26,7 +26,8 @@ public class OppFiTestSuite extends Apis {
         ResetSteps();
     }
 
-    @Test(description = "OffersApiAcceptedTest is testing to return an approved loan.")
+    @Test()
+    @Description("OffersApiAcceptedTest is testing to return an approved loan.")
     public void OffersApiAcceptedTest() throws Exception {
 
         Step("Set up API classes for the request body");
@@ -96,7 +97,8 @@ public class OppFiTestSuite extends Apis {
 
     }
 
-    @Test(description = "OffersApiDeclinedTest is testing to return a declined loan.")
+    @Test()
+    @Description("OffersApiDeclinedTest is testing to return a declined loan.")
     public void OffersApiGetsDeclinedTest() throws Exception
     {
         Step("Set up API classes for the request body");
@@ -166,7 +168,8 @@ public class OppFiTestSuite extends Apis {
             Info("Confirmed response was not accepted");
     }
 
-    @Test(description = "OffersApiCallGetsBadDataTest is testing to return an a bad API call.")
+    @Test()
+    @Description("OffersApiCallGetsBadDataTest is testing to return an a bad API call.")
     public void OffersApiCallGetsBadDataTest() throws Exception
     {
         Step("Set up bad API Request Body.");

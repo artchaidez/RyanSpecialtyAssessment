@@ -138,7 +138,7 @@ public class AutoLogger {
         Info(message);
     }
 
-    // TODO: This will will eventually be replaced when tests run in parallel
+    // TODO: This needs to be reworked
     public void ResetSteps()
     {
         stepNumber = 1;
