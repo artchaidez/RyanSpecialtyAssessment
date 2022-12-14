@@ -1,6 +1,6 @@
 package webTestFramework;
 
-import autoFramework.AutoBase;
+import autoFramework.UIBase;
 import com.thoughtworks.selenium.SeleniumException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -13,7 +13,7 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SeleniumControl extends AutoBase {
+public class SeleniumControl extends UIBase {
 
     protected By chromeLocator;
 

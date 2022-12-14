@@ -1,40 +1,42 @@
 package pages;
 
-import autoFramework.AutoBase;
+import autoFramework.UIBase;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import webTestFramework.SeleniumControl;
 
-public class PodiumModal extends AutoBase {
+public class PodiumModal extends UIBase {
 
-    SeleniumControl firstLocation = new SeleniumControl(By.xpath("//*[@class = 'LocationContainer StaggerFadeIn3 LocationContainer--desktop']"));
+    // Objects are private final
+    private final SeleniumControl firstLocation = new SeleniumControl(By.xpath("//*[@class = 'LocationContainer StaggerFadeIn3 LocationContainer--desktop']"));
 
-    SeleniumControl nameTextInput = new SeleniumControl(By.xpath("//*[@id= 'Name']"));
+    private final SeleniumControl nameTextInput = new SeleniumControl(By.xpath("//*[@id= 'Name']"));
 
-    SeleniumControl nameCheckMark = new SeleniumControl(By.xpath("//*[@class='TextInput']//*[@class='checkmark']"));
+    private final SeleniumControl nameCheckMark = new SeleniumControl(By.xpath("//*[@class='TextInput']//*[@class='checkmark']"));
 
-    SeleniumControl mobileNumberTextInput = new SeleniumControl(By.xpath("//*[@id= 'Mobile Phone']"));
+    private final SeleniumControl mobileNumberTextInput = new SeleniumControl(By.xpath("//*[@id= 'Mobile Phone']"));
 
-    SeleniumControl mobileNumberCheckmark = new SeleniumControl(By.xpath("//*[@class='TextInput TextInput--tel']//*[@class='checkmark']"));
+    private final SeleniumControl mobileNumberCheckmark = new SeleniumControl(By.xpath("//*[@class='TextInput TextInput--tel']//*[@class='checkmark']"));
 
-    SeleniumControl messageTextInput = new SeleniumControl(By.xpath("//*[@id= 'Message']"));
+    private final SeleniumControl messageTextInput = new SeleniumControl(By.xpath("//*[@id= 'Message']"));
 
-    SeleniumControl sendButtonValid = new SeleniumControl(By.xpath("//*[@class= 'SendButton SendButton--valid']"));
+    private final SeleniumControl sendButtonValid = new SeleniumControl(By.xpath("//*[@class= 'SendButton SendButton--valid']"));
 
-    SeleniumControl subjectTermsLink = new SeleniumControl(By.className("terms"));
+    private final SeleniumControl subjectTermsLink = new SeleniumControl(By.className("terms"));
 
-    SeleniumControl termsLink = new SeleniumControl(By.xpath("//*[text()='Terms of Service']"));
+    private final SeleniumControl termsLink = new SeleniumControl(By.xpath("//*[text()='Terms of Service']"));
 
-    SeleniumControl returnArrowBtn = new SeleniumControl((By.xpath("//*[@class='SendSmsPage__ArrowIcon']")));
+    private final SeleniumControl returnArrowBtn = new SeleniumControl((By.xpath("//*[@class='SendSmsPage__ArrowIcon']")));
 
-    SeleniumControl locationText = new SeleniumControl(By.xpath("//*[@class='SendSmsPage__CurrentLocationName']"));
+    private final SeleniumControl locationText = new SeleniumControl(By.xpath("//*[@class='SendSmsPage__CurrentLocationName']"));
 
-    SeleniumControl locationSearchBar = new SeleniumControl(By.xpath("//*[@name='Search Locations']"));
+    private final SeleniumControl locationSearchBar = new SeleniumControl(By.xpath("//*[@name='Search Locations']"));
 
-    SeleniumControl messageCharCount = new SeleniumControl(By.xpath("//*[contains(@stroke, '#3074dc')]"));
+    private final SeleniumControl messageCharCount = new SeleniumControl(By.xpath("//*[contains(@stroke, '#3074dc')]"));
 
-    SeleniumControl clearLocationSearchBar = new SeleniumControl(By.xpath("//*[@class='SearchInput__Reset']"));
+    private final SeleniumControl clearLocationSearchBar = new SeleniumControl(By.xpath("//*[@class='SearchInput__Reset']"));
 
+    // Methods are public
     public void SelectFirstLocation() throws Exception
     {
         firstLocation.Click(5);

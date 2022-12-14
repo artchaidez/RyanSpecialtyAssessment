@@ -2,13 +2,14 @@ package apiTestSuites;
 
 import apiModals.*;
 import apis.Apis;
+import autoFramework.AutoTestBase;
 import jdk.jfr.Description;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-public class OppFiTestSuite extends Apis {
+public class OppFiTestSuite extends AutoTestBase {
 
     private String resource = null;
     private String apiKey = null;
@@ -84,7 +85,7 @@ public class OppFiTestSuite extends Apis {
             Offer response;
 
             try {
-                response =  offersApi.PostOffers(offer, resource, apiKey);
+                response =  apis.offersApi.PostOffers(offer, resource, apiKey);
             }
             catch (Exception e)
             {
@@ -156,7 +157,7 @@ public class OppFiTestSuite extends Apis {
             Offer response;
 
             try {
-                response =  offersApi.PostOffers(offer, resource, apiKey);
+                response =  apis.offersApi.PostOffers(offer, resource, apiKey);
             }
             catch (Exception e)
             {
@@ -202,7 +203,7 @@ public class OppFiTestSuite extends Apis {
             int response;
 
             try {
-                response =  offersApi.PostOffersInt(badSampleRequest, resource, apiKey);
+                response =  apis.offersApi.PostOffersInt(badSampleRequest, resource, apiKey);
             }
             catch (Exception e)
             {

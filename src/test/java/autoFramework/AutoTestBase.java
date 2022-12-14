@@ -6,6 +6,7 @@ import pages.Pages;
 import pages.PodiumBubble;
 import pages.PodiumModal;
 
+// TODO: Need a class that has both API and Pages
 public class AutoTestBase extends AutoLogger {
 
     protected Apis apis;
@@ -15,5 +16,6 @@ public class AutoTestBase extends AutoLogger {
     {
         apis = new Apis();
         pages = new Pages();
+
     }
 }

@@ -1,5 +1,6 @@
 package webTestSuites;
 
+import autoFramework.AutoTestBase;
 import jdk.jfr.Description;
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterMethod;
@@ -8,18 +9,18 @@ import org.testng.annotations.Test;
 import pages.Pages;
 import webTestFramework.SeleniumControl;
 
-public class PodiumTestSuite extends Pages {
+public class PodiumTestSuite extends AutoTestBase {
 
     @BeforeMethod
     public void TestSetUp()
     {
-        InitWebDriver();
+        pages.InitWebDriver();
     }
 
     @AfterMethod
     public void TestTearDown()
     {
-        Quit();
+        pages.Quit();
         ResetSteps();
     }
 
@@ -28,26 +29,26 @@ public class PodiumTestSuite extends Pages {
     public void TestClickPodiumButton() throws Exception
     {
         Step("Go to Podium Demo Website");
-        GoToURL("https://demo.podium.tools/qa-webchat-lorw/");
+            pages.GoToURL("https://demo.podium.tools/qa-webchat-lorw/");
 
         Step("Verify on site by finding podium bubble");
-        podiumBubble.VerifyPodiumBubbleExists();
-        Info("Found Podium bubble");
+            pages.podiumBubble.VerifyPodiumBubbleExists();
+            Info("Found Podium bubble");
 
         Step("Switch to Podium bubble iframe");
-        Sleep(1);
-        podiumBubble.GoToPodiumBubbleFrame();
+            pages.Sleep(1);
+            pages.podiumBubble.GoToPodiumBubbleFrame();
 
         Step("Click on Podium Bubble");
-        podiumBubble.ClickOnPodiumButton();
-        Info("Currently within Podium bubble");
+            pages.podiumBubble.ClickOnPodiumButton();
+            Info("Currently within Podium bubble");
 
         Step("Switch to Podium modal iframe");
-        podiumBubble.GoToPodiumModalFrame();
+            pages.podiumBubble.GoToPodiumModalFrame();
 
         Step("Verify on Podium Modal");
-        podiumBubble.VerifyOnModal();
-        Info("Podium modal is visible");
+            pages.podiumBubble.VerifyOnModal();
+            Info("Podium modal is visible");
     }
 
     @Test (groups = {"regressionTest"})
@@ -55,22 +56,22 @@ public class PodiumTestSuite extends Pages {
     public void TestSelectFirstLocation() throws Exception
     {
         Step("Go to Podium Website");
-        GoToURL("https://demo.podium.tools/qa-webchat-lorw/");
+            pages.GoToURL("https://demo.podium.tools/qa-webchat-lorw/");
 
         Step("Go immediately to Podium modal");
-        Sleep(1);
-        podiumBubble.JumpToPodiumModal();
+            pages.Sleep(1);
+            pages.podiumBubble.JumpToPodiumModal();
 
         Step("Verify on Podium modal");
-        podiumModal.VerifyLocationSearchBar();
-        Info("Podium modal open");
+            pages.podiumModal.VerifyLocationSearchBar();
+            Info("Podium modal open");
 
         Step("Click on first location in location list");
-        podiumModal.SelectFirstLocation();
+            pages.podiumModal.SelectFirstLocation();
 
         Step("Verify on message modal");
-        podiumModal.VerifyNameTextInputExists();
-        Info("Within message modal as name text input was found.");
+            pages.podiumModal.VerifyNameTextInputExists();
+            Info("Within message modal as name text input was found.");
     }
 
     @Test (groups = {"regressionTest"})
@@ -80,23 +81,24 @@ public class PodiumTestSuite extends Pages {
         String location = "Scoreboard Sports - Orem";
 
         Step("Go to Podium Website");
-        GoToURL("https://demo.podium.tools/qa-webchat-lorw/");
+            pages.GoToURL("https://demo.podium.tools/qa-webchat-lorw/");
 
         Step("Go immediately to Podium modal");
-        Sleep(1);
-        podiumBubble.JumpToPodiumModal();
+            pages.Sleep(1);
+            pages.podiumBubble.JumpToPodiumModal();
 
         Step(String.format("Verify %s is in location list", location));
-        SeleniumControl locationBtn = new SeleniumControl(By.xpath(String.format("//*[text()= \"%s\"]", location)));
-        locationBtn.IsVisible(5);
-        Info(String.format("%s is in the modal", location));
+        // TODO: refactor into a private object
+            SeleniumControl locationBtn = new SeleniumControl(By.xpath(String.format("//*[text()= \"%s\"]", location)));
+            locationBtn.IsVisible(5);
+            Info(String.format("%s is in the modal", location));
 
         Step(String.format("Click on %s", location));
-        locationBtn.Click(5);
+            locationBtn.Click(5);
 
         Step(String.format("Verify %s opened up", location));
-        podiumModal.VerifyCorrectLocationOpened(location);
-        Info(String.format("%s opened up", location));
+            pages.podiumModal.VerifyCorrectLocationOpened(location);
+            Info(String.format("%s opened up", location));
     }
 
     @Test (groups = {"smokeTest"})
@@ -104,49 +106,49 @@ public class PodiumTestSuite extends Pages {
     public void TestInputMessageData() throws Exception
     {
         String name = "Art";
-        String telephone = "7777777777";
-        String message = "Hello QA Tester";
+            String telephone = "7777777777";
+            String message = "Hello QA Tester";
 
         Step("Go to Podium Website");
-        GoToURL("https://demo.podium.tools/qa-webchat-lorw/");
+            pages.GoToURL("https://demo.podium.tools/qa-webchat-lorw/");
 
         Step("Go immediately to Podium modal");
-        Sleep(1);
-        podiumBubble.JumpToPodiumModal();
+            pages.Sleep(1);
+            pages.podiumBubble.JumpToPodiumModal();
 
         Step("Verify on Podium modal");
-        podiumModal.VerifyLocationSearchBar();
-        Info("Podium modal open");
+            pages.podiumModal.VerifyLocationSearchBar();
+            Info("Podium modal open");
 
         Step("Click on first location in location list");
-        podiumModal.SelectFirstLocation();
+            pages.podiumModal.SelectFirstLocation();
 
         Step("Input name in Name text input");
-        podiumModal.SetTextInNameInput(name, 5, null);
-        Sleep(1);
+            pages.podiumModal.SetTextInNameInput(name, 5, null);
+            pages.Sleep(1);
 
         Step("Verify text was put into name input");
-        podiumModal.VerifyNameCheckmarkExists();
-        Info("Message has text input");
+            pages.podiumModal.VerifyNameCheckmarkExists();
+            Info("Message has text input");
 
         Step("Input phone number into mobile phone text input");
-        podiumModal.SetMobileNumberInput(telephone, 5, null);
-        Sleep(1);
+            pages.podiumModal.SetMobileNumberInput(telephone, 5, null);
+            pages.Sleep(1);
 
         Step("Verify phone number was put into input");
-        podiumModal.VerifyMobileNumberCheckmarkExists();
+            pages.podiumModal.VerifyMobileNumberCheckmarkExists();
 
         Step("Input message in message text input");
-        podiumModal.SetMessageInput(message, 5, null);
-        Sleep(1);
+            pages.podiumModal.SetMessageInput(message, 5, null);
+            pages.Sleep(1);
 
         Step("Verify message has input");
-        podiumModal.VerifyMessageHasInput();
-        Info("Message has text input");
+            pages.podiumModal.VerifyMessageHasInput();
+            Info("Message has text input");
 
         Step("Verify all inputs have data");
-        podiumModal.VerifyAllInputsComplete();
-        Info("All inputs filled out and send button is valid");
+            pages.podiumModal.VerifyAllInputsComplete();
+            Info("All inputs filled out and send button is valid");
     }
 
     @Test (groups = {"regressionTest"})
@@ -154,25 +156,25 @@ public class PodiumTestSuite extends Pages {
     public void TestClickSubjectTerms() throws Exception
     {
         Step("Go to Podium Website");
-        GoToURL("https://demo.podium.tools/qa-webchat-lorw/");
+            pages.GoToURL("https://demo.podium.tools/qa-webchat-lorw/");
 
         Step("Go immediately to Podium modal");
-        Sleep(1);
-        podiumBubble.JumpToPodiumModal();
+            pages.Sleep(1);
+            pages.podiumBubble.JumpToPodiumModal();
 
         Step("Verify on Podium modal");
-        podiumModal.VerifyLocationSearchBar();
-        Info("Podium modal open");
+            pages.podiumModal.VerifyLocationSearchBar();
+            Info("Podium modal open");
 
         Step("Click on 'use is subject to terms'");
-        podiumModal.ClickOnTermsButton();
+            pages.podiumModal.ClickOnTermsButton();
 
         Step("Switch to Terms and Service page");
-        switchToNewlyOpenTab();
+            pages.switchToNewlyOpenTab();
 
         Step("Verify on Terms and Service page by clicking on 'Terms of Service'");
-        podiumModal.VerifyOnSubjectTermsPage();
-        Info("Clicked on 'Terms of Service'");
+            pages.podiumModal.VerifyOnSubjectTermsPage();
+            Info("Clicked on 'Terms of Service'");
     }
 
     @Test (groups = {"regressionTest"})
@@ -182,32 +184,32 @@ public class PodiumTestSuite extends Pages {
         String message = "There is a bug with the return arrow on the message widget!";
 
         Step("Go to Podium Website");
-        GoToURL("https://demo.podium.tools/qa-webchat-lorw/");
+        pages.GoToURL("https://demo.podium.tools/qa-webchat-lorw/");
 
         Step("Go immediately to Podium modal");
-        Sleep(1);
-        podiumBubble.JumpToPodiumModal();
+        pages.Sleep(1);
+        pages.podiumBubble.JumpToPodiumModal();
 
         Step("Verify on Podium modal");
-        podiumModal.VerifyLocationSearchBar();
+        pages.podiumModal.VerifyLocationSearchBar();
         Info("Podium modal open");
 
         Step("Click on first location in location list");
-        podiumModal.SelectFirstLocation();
+        pages.podiumModal.SelectFirstLocation();
 
         Step("Verify on message modal");
-        podiumModal.VerifyNameTextInputExists();
+        pages.podiumModal.VerifyNameTextInputExists();
         Info("Within message modal as name text input was found.");
 
         Step("Click on return arrow");
-        podiumModal.ClickOnReturnArrowBtn();
+        pages.podiumModal.ClickOnReturnArrowBtn();
 
         Step("Verify message modal is still open by inputting text into message input");
-        podiumModal.SetMessageInput(message, 5, null);
-        Sleep(1);
+        pages.podiumModal.SetMessageInput(message, 5, null);
+        pages.Sleep(1);
 
         Step("Verify text was inputted into message input");
-        podiumModal.VerifyMessageHasInput();
+        pages.podiumModal.VerifyMessageHasInput();
         Info("Message has text input");
     }
 
@@ -222,54 +224,54 @@ public class PodiumTestSuite extends Pages {
         String bountifulName = "Bountiful";
 
         Step("Go to Podium Website");
-        GoToURL("https://demo.podium.tools/qa-webchat-lorw/");
+        pages.GoToURL("https://demo.podium.tools/qa-webchat-lorw/");
 
         Step("Go immediately to Podium modal");
-        Sleep(1);
-        podiumBubble.JumpToPodiumModal();
+        pages.Sleep(1);
+        pages.podiumBubble.JumpToPodiumModal();
 
         Step("Verify on Podium modal");
-        podiumModal.VerifyLocationSearchBar();
+        pages.podiumModal.VerifyLocationSearchBar();
         Info("Podium modal open");
 
         Step("Input Bountiful ZIP code into searchbar");
-        podiumModal.SetLocationSearchBarText(bountifulZIP);
-        Sleep(1);
+        pages.podiumModal.SetLocationSearchBarText(bountifulZIP);
+        pages.Sleep(1);
 
         Step("Verify first location in list is Bountiful");
-        podiumModal.VerifySearchBarInputCorrect(bountifulZIP);
+        pages.podiumModal.VerifySearchBarInputCorrect(bountifulZIP);
         Info("Correctly searched for Bountiful ZIP");
 
         Step("Input Bountiful name into searchbar");
-        podiumModal.SetLocationSearchBarText(bountifulName);
-        Sleep(1);
+        pages.podiumModal.SetLocationSearchBarText(bountifulName);
+        pages.Sleep(1);
 
         Step("Verify first location in list is Bountiful");
-        podiumModal.VerifySearchBarInputCorrect(bountifulName);
+        pages.podiumModal.VerifySearchBarInputCorrect(bountifulName);
         Info("Correctly searched for Bountiful name");
 
         Step("Input Bountiful building number into searchbar");
-        podiumModal.SetLocationSearchBarText(bountifulBuildingNum);
-        Sleep(1);
+        pages.podiumModal.SetLocationSearchBarText(bountifulBuildingNum);
+        pages.Sleep(1);
 
         Step("Verify first location in list is Bountiful");
-        podiumModal.VerifySearchBarInputCorrect(bountifulBuildingNum);
+        pages.podiumModal.VerifySearchBarInputCorrect(bountifulBuildingNum);
         Info("Correctly searched for Bountiful building name");
 
         Step("Input Bountiful street name into searchbar");
-        podiumModal.SetLocationSearchBarText(bountifulStreet);
-        Sleep(1);
+        pages.podiumModal.SetLocationSearchBarText(bountifulStreet);
+        pages.Sleep(1);
 
         Step("Verify first location in list is Bountiful");
-        podiumModal.VerifySearchBarInputCorrect(bountifulStreet);
+        pages.podiumModal.VerifySearchBarInputCorrect(bountifulStreet);
         Info("Correctly searched for Bountiful street name");
 
         Step("Input Bountiful city into searchbar");
-        podiumModal.SetLocationSearchBarText(bountifulCity);
-        Sleep(1);
+        pages.podiumModal.SetLocationSearchBarText(bountifulCity);
+        pages.Sleep(1);
 
         Step("Verify first location in list in Bountiful");
-        podiumModal.VerifySearchBarInputCorrect(bountifulCity);
+        pages.podiumModal.VerifySearchBarInputCorrect(bountifulCity);
         Info("Correctly searched for Bountiful city");
     }
 }

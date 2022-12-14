@@ -1,17 +1,19 @@
 package pages;
 
-import autoFramework.AutoBase;
+import autoFramework.UIBase;
 import org.openqa.selenium.By;
 import webTestFramework.SeleniumControl;
 
-public class PodiumBubble extends AutoBase {
+public class PodiumBubble extends UIBase {
 
-    SeleniumControl podiumBubble = new SeleniumControl(By.id("podium-bubble"));
+    // Objects are private final
+    private final SeleniumControl podiumBubble = new SeleniumControl(By.id("podium-bubble"));
 
-    SeleniumControl podiumBtn = new SeleniumControl(By.className("ContactBubble__Bubble"));
+    private final SeleniumControl podiumBtn = new SeleniumControl(By.className("ContactBubble__Bubble"));
 
-    SeleniumControl modal = new SeleniumControl(By.xpath("//*[contains(@class, 'SearchInput')]"));
+    private final SeleniumControl modal = new SeleniumControl(By.xpath("//*[contains(@class, 'SearchInput')]"));
 
+    // Methods are public
     /** Switch to podium-bubble iframe.*/
     public void GoToPodiumBubbleFrame()
     {

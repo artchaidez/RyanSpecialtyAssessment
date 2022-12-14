@@ -1,8 +1,8 @@
 package pages;
 
-import autoFramework.AutoBase;
+import autoFramework.UIBase;
 
-public class Pages extends AutoBase {
+public class Pages extends UIBase {
 
     public PodiumBubble podiumBubble;
     public PodiumModal podiumModal;

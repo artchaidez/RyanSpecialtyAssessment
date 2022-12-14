@@ -6,7 +6,7 @@ import webTestFramework.SeleniumControl;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 
-public class AutoBase extends AutoLogger {
+public class UIBase extends AutoLogger {
 
     protected static WebDriver webDriver;
     public SeleniumControl seleniumControl;
@@ -39,7 +39,7 @@ public class AutoBase extends AutoLogger {
 
     public void setWebDriver(WebDriver webDriver)
     {
-        AutoBase.webDriver = webDriver;
+        UIBase.webDriver = webDriver;
     }
 
     public WebDriver getWebDriver()
