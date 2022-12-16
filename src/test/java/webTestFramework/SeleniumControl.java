@@ -105,6 +105,7 @@ public class SeleniumControl extends UIBase {
         return element;
     }
 
+    // TODO: not blocking password
     public String SetText(String text, int Max_Retries, Boolean escape) throws Exception {
         if (Max_Retries == 0)
             Max_Retries = 5;
@@ -125,7 +126,7 @@ public class SeleniumControl extends UIBase {
 
                 String elemType = this.GetAttribute("type");
 
-                if(elemType == null || elemType != "password")
+                if(elemType == null || !elemType.equals("password"))
                     Info("   [SetText] " + this.FormatControlName() + " ---> '" + text.replace("\n", "<Enter>" + "'"));
                 else
                     Info("   [SetText] " + this.FormatControlName() + " ---> '*****'");
