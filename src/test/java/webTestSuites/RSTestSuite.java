@@ -8,6 +8,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import webTestFramework.SeleniumControl;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class RSTestSuite extends AutoTestBase {
 
     private String email = null;
@@ -57,16 +60,19 @@ public class RSTestSuite extends AutoTestBase {
             pages.trelloPage.OpenCard(cardTitle);
 
         // TODO: Fails here. Need correct Xpath
+        // //*[@class='field field-autosave js-description-draft description card-description']
+        // //*[@class='description-content js-desc-content']
+        // //*[@class='description-content js-desc-content']//*[@class='field field-autosave js-description-draft description card-description']
+        // //*[@class='u-gutter']
+        // can click; cannot SetText()
+        // //*[@class='description-fake-text-area js-description-fake-text-area hide-on-edit js-edit-desc js-hide-with-draft']
         Step("In the card modal, add the description: this is a new card");
-            SeleniumControl cardModalDescription = new SeleniumControl(By.xpath("//*[@class='editable']//*[@class='description-content js-desc-content']//*[@class= 'field field-autosave js-description-draft description card-description']"));
-            // //*[@class= 'field field-autosave js-description-draft description card-description'] does not work
-            // //*[@class='description-content js-desc-content'] does not work
-
-            //cardModalDescription.SetText(cardDescription, 5, false);
+            SeleniumControl cardModalDescription = new SeleniumControl(By.xpath("//*[@class='description-content js-desc-content']//*[@class='field field-autosave js-description-draft description card-description']"));
+            cardModalDescription.SetText(cardDescription, 5, false);
 
         Step("Save the description");
             SeleniumControl saveDescription = new SeleniumControl(By.xpath("//*[@class= 'nch-button nch-button--primary confirm mod-submit-edit js-save-edit']"));
-            //saveDescription.Click(5);
+            saveDescription.Click(5);
 
         Step("Close the modal");
             pages.trelloPage.CloseCard();
@@ -119,6 +125,37 @@ public class RSTestSuite extends AutoTestBase {
     Then I am able to add a checklist called "check list"
     And it has an item called "Item 1"
     And it has an item called "Item 2" */
+    @Test
+    public void TestAddCheckListWithItems() throws Exception
+    {
+        String cardTitle = "new card";
+        String columnName = "Working";
+        String checklistTitle = "check list";
+        ArrayList<String> checkListItems = new ArrayList<>();
+        checkListItems.add("Item 1");
+        checkListItems.add("Item 2");
+
+        Step("Go to Trello Page");
+        pages.GoToURL("https://trello.com/b/0QEdvItb/rt-sdet");
+
+        // TODO: Verify all these steps
+        Step("Log into Trello");
+        pages.trelloPage.LogIntoAccountOnMainPage(email, password);
+
+        Step(String.format("Add '%s' card to column '%s'", cardTitle, columnName));
+        pages.Sleep(1);
+        pages.trelloPage.AddCardToColumn(columnName, cardTitle);
+
+        Step("Open the newly created card");
+        pages.Sleep(1);
+        pages.trelloPage.OpenCard(cardTitle);
+
+        Step(String.format("Create a checklist named: '%s' and its items", checklistTitle));
+        pages.trelloPage.CreateNewCheckList(checklistTitle, checkListItems);
+
+        // TODO: Verify Items are there
+
+    }
 
     /** Scenario 4: Complete to do Items
     Given I have a card titled "new card" in the "Working" column

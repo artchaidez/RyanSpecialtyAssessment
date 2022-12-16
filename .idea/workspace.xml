@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="914d3150-6a39-41fb-9036-1bf9e1fb6f0b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/Pages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/Pages.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/pages/TrelloPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/TrelloPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/webTestSuites/RSTestSuite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/webTestSuites/RSTestSuite.java" afterDir="false" />
     </list>
@@ -96,7 +95,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OppFiTestSuite" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="RSTestSuite.TestAddCheckListWithItems" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -109,7 +108,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;apiTestSuites.OppFiTestSuite&quot;" />
+            <option value="&quot;webTestSuites.RSTestSuite.TestAddCheckListWithItems&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -211,18 +210,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
+      <item itemvalue="Gradle.RSTestSuite.TestAddCheckListWithItems" />
       <item itemvalue="Gradle.RSTestSuite.TestMoveCardIntoWorking" />
       <item itemvalue="Gradle.RSTestSuite.TestMoveCardIntoWorkingColumn" />
       <item itemvalue="Gradle.RSTestSuite.TestCreateNewCardInTodo" />
-      <item itemvalue="Gradle.OppFiTestSuite" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.RSTestSuite.TestCreateNewCardInTodo" />
+        <item itemvalue="Gradle.RSTestSuite.TestAddCheckListWithItems" />
         <item itemvalue="Gradle.RSTestSuite.TestMoveCardIntoWorkingColumn" />
         <item itemvalue="Gradle.RSTestSuite.TestMoveCardIntoWorking" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Gradle.OppFiTestSuite" />
       </list>
     </recent_temporary>
   </component>
@@ -247,5 +246,26 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/webTestSuites/RSTestSuite.java</url>
+          <line>157</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/webTestSuites/RSTestSuite.java</url>
+          <line>153</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/webTestSuites/RSTestSuite.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

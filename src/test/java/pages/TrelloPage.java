@@ -4,6 +4,8 @@ import autoFramework.UIBase;
 import org.openqa.selenium.By;
 import webTestFramework.SeleniumControl;
 
+import java.util.ArrayList;
+
 public class TrelloPage extends UIBase {
 
     private final SeleniumControl logInMainPageBtn = new SeleniumControl(By.xpath("//*[@class='seg6b92uUYbLu1']"));
@@ -65,6 +67,8 @@ public class TrelloPage extends UIBase {
         addCardBtn.Click(5);
     }
 
+    // TODO: This should be looking by column
+    // TODO: Use same xpath to delete a card. Do this at the end of every test making a new card
     public void OpenCard(String cardTitle) throws Exception
     {
         String xpath = String.format("//*[@class= 'list-card js-member-droppable ui-droppable ui-sortable-handle']//*[text()='%s']", cardTitle);
@@ -93,4 +97,34 @@ public class TrelloPage extends UIBase {
         SeleniumControl clickMove = new SeleniumControl(By.xpath("//*[@class='nch-button nch-button--primary wide js-submit']"));
         clickMove.Click(5);
     }
+
+    public void CreateNewCheckList(String checklistTitle, ArrayList<String> checkListItems) throws Exception
+    {
+        SeleniumControl checkListBtn = new SeleniumControl(By.xpath("//*[@class='button-link js-add-checklist-menu']"));
+        checkListBtn.Click(5);
+
+        SeleniumControl checkListInput = new SeleniumControl(By.xpath("//*[@id='id-checklist']"));
+        checkListInput.SetText(checklistTitle, 5, false);
+
+        // new stuff
+        SeleniumControl checkListAdd = new SeleniumControl(By.xpath("//*[@class='nch-button nch-button--primary wide confirm js-add-checklist']"));
+        checkListAdd.Click(5);
+
+        SeleniumControl addItemText = new SeleniumControl(By.xpath("//*[@class='edit field checklist-new-item-text js-new-checklist-item-input']"));
+        //addItemText.SetText(itemOne, 5, false);
+
+        SeleniumControl addItem = new SeleniumControl(By.xpath("//*[@class='nch-button nch-button--primary confirm mod-submit-edit js-add-checklist-item']"));
+        /*addItem.Click(5);
+        addItemText.SetText(itemTwo, 5, false);
+        addItem.Click(5);*/
+
+        for (int i = 0; i < checkListItems.size(); i++)
+        {
+            addItemText.SetText(checkListItems.get(i), 5, false);
+            addItem.Click(5);
+        }
+
+    }
+
+
 }
