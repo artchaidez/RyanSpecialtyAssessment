@@ -15,11 +15,11 @@ public class TrelloSignInPage {
     private final SeleniumControl logInBtn = new SeleniumControl(By.xpath("//*[@id = 'login-submit']"));
 
 
-    public trelloBoardPage trelloBoardPage;
+    public TrelloBoardPage trelloBoardPage;
 
     public TrelloSignInPage()
     {
-        trelloBoardPage = new trelloBoardPage();
+        trelloBoardPage = new TrelloBoardPage();
     }
 
     public void ClickOnMainPageLogIn() throws Exception

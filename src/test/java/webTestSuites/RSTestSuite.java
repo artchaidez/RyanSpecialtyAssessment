@@ -1,9 +1,13 @@
 package webTestSuites;
 
 import autoFramework.AutoTestBase;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import webTestFramework.SeleniumControl;
 
 import java.util.ArrayList;
 
@@ -39,7 +43,7 @@ public class RSTestSuite extends AutoTestBase {
     public void TestCreateNewCardInTodo() throws Exception {
 
         String cardTitle = "new card";
-        String columnNameTodo = "To Do";
+        String listNameTodo = "To Do";
         String cardDescription = "this is a new card";
 /*
         Step("Go to Trello Page");
@@ -49,11 +53,11 @@ public class RSTestSuite extends AutoTestBase {
         Step("Log into Trello");
             pages.trelloPage.LogIntoAccountOnMainPage(email, password);
 
-        Step("Add a new card titled 'new card' to column 'To Do'");
-            pages.trelloPage.AddCardToColumn(columnNameTodo, cardTitle);
+        Step("Add a new card titled 'new card' to list 'To Do'");
+            pages.trelloPage.AddCardToColumn(listNameTodo, cardTitle);
 
         Step("Find the newly created card and open it to edit the card");
-            pages.trelloPage.OpenCard(cardTitle, columnNameTodo);
+            pages.trelloPage.OpenCard(cardTitle, listNameTodo);
 
         // TODO: Fails here. Need correct Xpath
         // //*[@class='field field-autosave js-description-draft description card-description']
@@ -87,9 +91,9 @@ public class RSTestSuite extends AutoTestBase {
     @Test
     public void TestMoveCardIntoWorkingColumn() throws Exception
     {
-        String columnNameTodo = "To Do";
+        String listNameTodo = "To Do";
         String cardTitle = "new card";
-        String columnNameWorking = "Working";
+        String listNameWorking = "Working";
 
         Step("Go to Trello Page");
             pages.GoToURL("https://trello.com/b/0QEdvItb/rt-sdet");
@@ -98,17 +102,17 @@ public class RSTestSuite extends AutoTestBase {
         Step("Log into Trello");
             pages.trelloSignInPage.LogIntoAccountOnMainPage(email, password);
 
-        Step(String.format("Add '%s' card to column '%s'", cardTitle, columnNameTodo));
-            pages.trelloSignInPage.trelloBoardPage.AddCardToColumn(columnNameTodo, cardTitle);
+        Step(String.format("Add '%s' card to list '%s'", cardTitle, listNameTodo));
+            pages.trelloSignInPage.trelloBoardPage.AddCardToColumn(listNameTodo, cardTitle);
 
         Step(String.format("Open '%s'", cardTitle));
-            pages.trelloSignInPage.trelloBoardPage.OpenCard(cardTitle, columnNameTodo);
+            pages.trelloSignInPage.trelloBoardPage.OpenCard(cardTitle, listNameTodo);
 
-        Step("In the modal, under Actions, click on Move to open the 'Move Card' modal and move to column Working");
-            pages.trelloSignInPage.trelloBoardPage.MoveCardToColumnUnderAction(columnNameWorking);
+        Step("In the modal, under Actions, click on Move to open the 'Move Card' modal and move to list Working");
+            pages.trelloSignInPage.trelloBoardPage.trelloCardPage.MoveCardToColumnUnderAction(listNameWorking);
 
         Step("Verify card was moved to working");
-            pages.trelloSignInPage.trelloBoardPage.VerifyCardInColumn(cardTitle, columnNameWorking);
+            pages.trelloSignInPage.trelloBoardPage.VerifyCardInColumn(cardTitle, listNameWorking);
 
     }
 
@@ -122,61 +126,72 @@ public class RSTestSuite extends AutoTestBase {
     public void TestAddCheckListWithItems() throws Exception
     {
         String cardTitle = "new card";
-        String columnName = "Working";
+        String listName = "Working";
         String checklistTitle = "check list";
         ArrayList<String> checkListItems = new ArrayList<>();
         checkListItems.add("Item 1");
         checkListItems.add("Item 2");
-/*
         Step("Go to Trello Page");
         pages.GoToURL("https://trello.com/b/0QEdvItb/rt-sdet");
 
         // TODO: Verify all these steps
         Step("Log into Trello");
-        pages.trelloPage.LogIntoAccountOnMainPage(email, password);
+        pages.trelloSignInPage.LogIntoAccountOnMainPage(email, password);
 
-        Step(String.format("Add '%s' card to column '%s'", cardTitle, columnName));
+        Step(String.format("Add '%s' card to list '%s'", cardTitle, listName));
         pages.Sleep(1);
-        pages.trelloPage.AddCardToColumn(columnName, cardTitle);
+        pages.trelloSignInPage.trelloBoardPage.AddCardToColumn(listName, cardTitle);
 
         Step("Open the newly created card");
         pages.Sleep(1);
-        pages.trelloPage.OpenCard(cardTitle, columnName);
+        pages.trelloSignInPage.trelloBoardPage.OpenCard(cardTitle, listName);
 
         Step(String.format("Create a checklist named: '%s' and its items", checklistTitle));
-        pages.trelloPage.CreateNewCheckList(checklistTitle, checkListItems);
+        pages.trelloSignInPage.trelloBoardPage.trelloCardPage.CreateNewCheckList(checklistTitle, checkListItems);
 
         Step("Verify checklist is correct");
-        pages.trelloPage.VerifyCheckList(checkListItems);
+        pages.trelloSignInPage.trelloBoardPage.trelloCardPage.VerifyCheckList(checkListItems);
 
-        //*[@class='button-link js-archive-card']
         Step("Delete card in modal");
-        pages.trelloPage.DeleteCardInModal();
+        pages.trelloSignInPage.trelloBoardPage.trelloCardPage.DeleteCard();
 
-        Step("Verify card is no longer in column");
-        // TODO: confirm after delete that card is not in column
-        //pages.trelloPage.VerifyCardNotInColumn(cardTitle, columnName);
+        // TODO: complete up to here
+
+
+        Step("Verify card is no longer in list");
+        // TODO: confirm after delete that card is not in list in Board
+        //pages.trelloPage.VerifyCardNotInColumn(cardTitle, listName);
 
         Step("Verify card was also not archived");
         // TODO: menu appearing after deletion
         // //*[@class='SyQNhGiXQPXGMA Ts+YceGnvTbKoG gGx-TWcD-qHGLA d3VddHWjHgldJq JIXQq8gDYY04N6']
-        SeleniumControl threeBtnList = new SeleniumControl(By.xpath("//*[@class='SyQNhGiXQPXGMA Ts+YceGnvTbKoG gGx-TWcD-qHGLA d3VddHWjHgldJq JIXQq8gDYY04N6']"));
-        threeBtnList.Click(5);
+        Info("Expand Menu");
+        SeleniumControl threeBtnList = new SeleniumControl(By.xpath("//*[@class='show-sidebar-button-react-root']"));
+            threeBtnList.Click(5);
 
+
+        Info("Click on 'More' in Menu");
         SeleniumControl moreInMenu = new SeleniumControl(By.xpath("//*[@class='board-menu-navigation-item-link js-open-more']"));
         moreInMenu.Click(5);
 
         //*[@class='board-moreInMenu-navigation-item-link js-open-archive']
-        SeleniumControl archiveItems = new SeleniumControl(By.xpath("//*[@class='board-moreInMenu-navigation-item-link js-open-archive']"));
+        // TODO: not clicking on archive
+        Info("Click on 'Archived Items'");
+        SeleniumControl archiveItems = new SeleniumControl(By.xpath("//*[@class='board-menu-navigation-item-link js-open-archive']"));
         archiveItems.Click(5);
 
         // shown in empty list but should not use it
         // //*[@class='empty-list js-empty-message']
 
         // should not be found if deleted right
-        //*[@class='archived-list-card']//*[text()='new card']
-        SeleniumControl cardShouldNotBeFound = new SeleniumControl(By.xpath("//*[@class='archived-list-card']//*[text()='new card']"));
-        Assert.assertEquals(cardShouldNotBeFound.IsNotVisible(5), true);*/
+        // //*[@class='empty-list js-empty-message'] - if this is true, card was correctly archived and deleted
+        //*[@class='archived-list-card']//*[text()='new card'] - if you find this, card was only archived
+        SeleniumControl noCardsCheck = new SeleniumControl(By.xpath("//*[@class='js-archive-items']"));
+        noCardsCheck.FindElement(5);
+        /*WebElement word = noCardsCheck.getWebElement();
+        String stringword = noCardsCheck.getText();
+        By word2 = noCardsCheck.getLocator();
+        String word3 = noCardsCheck.getLocatorValue();*/
 
     }
 
@@ -191,7 +206,7 @@ public class RSTestSuite extends AutoTestBase {
     public void TestCompleteToDoItemsChecklist() throws Exception
     {
         String cardTitle = "new card";
-        String columnName = "Working";
+        String listName = "Working";
         String checklistTitle = "check list";
         ArrayList<String> checkListItems = new ArrayList<>();
         checkListItems.add("Item 1");
@@ -203,22 +218,22 @@ public class RSTestSuite extends AutoTestBase {
         Step("Log into Trello");
         pages.trelloSignInPage.LogIntoAccountOnMainPage(email, password);
 
-        Step(String.format("Add '%s' card to column '%s'", cardTitle, columnName));
+        Step(String.format("Add '%s' card to list '%s'", cardTitle, listName));
         pages.Sleep(1);
-        pages.trelloSignInPage.trelloBoardPage.AddCardToColumn(columnName, cardTitle);
+        pages.trelloSignInPage.trelloBoardPage.AddCardToColumn(listName, cardTitle);
 
         Step("Open the newly created card");
         pages.Sleep(1);
-        pages.trelloSignInPage.trelloBoardPage.OpenCard(cardTitle, columnName);
+        pages.trelloSignInPage.trelloBoardPage.OpenCard(cardTitle, listName);
 
         Step(String.format("Create a checklist named: '%s' and its items", checklistTitle));
-        pages.trelloSignInPage.trelloBoardPage.CreateNewCheckList(checklistTitle, checkListItems);
+        pages.trelloSignInPage.trelloBoardPage.trelloCardPage.CreateNewCheckList(checklistTitle, checkListItems);
 
         Step("Complete the checklist by clicking on the checkboxes");
-        pages.trelloSignInPage.trelloBoardPage.CompleteCheckList(checkListItems);
+        pages.trelloSignInPage.trelloBoardPage.trelloCardPage.CompleteCheckList(checkListItems);
 
         Step("Verify checklist is complete");
-        pages.trelloSignInPage.trelloBoardPage.VerifyChecklistComplete();
+        pages.trelloSignInPage.trelloBoardPage.trelloCardPage.VerifyChecklistComplete();
     }
 
     /** Scenario 5: Move to done
@@ -231,8 +246,8 @@ public class RSTestSuite extends AutoTestBase {
     public void TestMoveCardIntoDoneColumn() throws Exception
     {
         String cardTitle = "new card";
-        String columnNameWorking = "Working";
-        String columnNameDone = "Done";
+        String listNameWorking = "Working";
+        String listNameDone = "Done";
         Step("Go to Trello Page");
         pages.GoToURL("https://trello.com/b/0QEdvItb/rt-sdet");
 
@@ -240,19 +255,19 @@ public class RSTestSuite extends AutoTestBase {
         Step("Log into Trello");
         pages.trelloSignInPage.LogIntoAccountOnMainPage(email, password);
 
-        Step(String.format("Add '%s' card to column '%s'", cardTitle, columnNameWorking));
+        Step(String.format("Add '%s' card to list '%s'", cardTitle, listNameWorking));
         pages.Sleep(1);
-        pages.trelloSignInPage.trelloBoardPage.AddCardToColumn(columnNameWorking, cardTitle);
+        pages.trelloSignInPage.trelloBoardPage.AddCardToColumn(listNameWorking, cardTitle);
 
         Step("Open the newly created card");
         pages.Sleep(1);
-        pages.trelloSignInPage.trelloBoardPage.OpenCard(cardTitle, columnNameWorking);
+        pages.trelloSignInPage.trelloBoardPage.OpenCard(cardTitle, listNameWorking);
 
-        Step("Click on 'in list Working' at the top of the modal and move to column 'Done'");
-        pages.trelloSignInPage.trelloBoardPage.MoveCardToColumnUsingInList(columnNameDone);
+        Step("Click on 'in list Working' at the top of the modal and move to list 'Done'");
+        pages.trelloSignInPage.trelloBoardPage.trelloCardPage.MoveCardToColumnUsingInList(listNameDone);
 
-        Step("Verify card is in Done column");
-        pages.trelloSignInPage.trelloBoardPage.VerifyCardInColumn(cardTitle, columnNameDone);
+        Step("Verify card is in 'Done' list");
+        pages.trelloSignInPage.trelloBoardPage.VerifyCardInColumn(cardTitle, listNameDone);
 
     }
 
