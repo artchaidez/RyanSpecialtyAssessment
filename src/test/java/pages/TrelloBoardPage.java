@@ -67,6 +67,7 @@ public class TrelloBoardPage extends UIBase {
     public void VerifyCardInColumn(String cardTitle, String listName) throws Exception
     {
         Assert.assertTrue(ReturnCardInColumn(cardTitle, listName));
+        Info(String.format("   Card '%s' is in list '%s'", cardTitle, listName));
     }
 
     // TODO: Fix
@@ -82,7 +83,7 @@ public class TrelloBoardPage extends UIBase {
         //Assert.assertEquals(card.getText(), "0 cards");
     }
 
-    public void VerifyCardWasDeleted() throws Exception
+    public void VerifyCardWasDeletedNotArchived() throws Exception
     {
         Info("   Verify card is not archived");
             /* BUG: Sometimes Menu is open. Does not create issues interacting with List, but does when trying to
@@ -111,5 +112,6 @@ public class TrelloBoardPage extends UIBase {
         sdetBoard.IsVisible(5);
         Info("   On SDET Board");
     }
+
 
 }

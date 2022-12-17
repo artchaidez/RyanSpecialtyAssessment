@@ -1,11 +1,9 @@
 package webTestSuites;
 
 import autoFramework.AutoTestBase;
-import org.openqa.selenium.By;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import webTestFramework.SeleniumControl;
 
 import java.util.ArrayList;
 
@@ -38,8 +36,8 @@ public class RSTestSuite extends AutoTestBase {
      And a description of "this is a new card"
      Then I am able to see it in the To Do column */
     @Test
-    public void TestCreateNewCardInTodo() throws Exception {
-
+    public void TestCreateNewCardInTodo() throws Exception
+    {
         String cardTitle = "new card";
         String listNameTodo = "To Do";
         String cardDescription = "this is a new card";
@@ -47,7 +45,6 @@ public class RSTestSuite extends AutoTestBase {
         Step("Go to Trello Page");
             pages.GoToURL("https://trello.com/b/0QEdvItb/rt-sdet");
 
-        // TODO: Verify all these steps
         Step("Log into Trello");
             pages.trelloSignInPage.LogIntoAccountOnMainPage(email, password);
 
@@ -60,33 +57,15 @@ public class RSTestSuite extends AutoTestBase {
         Step("Verify card was made by opening it");
             pages.trelloSignInPage.trelloBoardPage.OpenCard(cardTitle, listNameTodo);
 
-        // TODO: Fails here. Need correct Xpath
-        // //*[@class='field field-autosave js-description-draft description card-description']
-        // //*[@class='description-content js-desc-content']
-        // //*[@class='description-content js-desc-content']//*[@class='field field-autosave js-description-draft description card-description']
-        // //*[@class='u-gutter']
-        // can click; cannot SetText()
-        // //*[@class='description-fake-text-area js-description-fake-text-area hide-on-edit js-edit-desc js-hide-with-draft']
         Step(String.format("In the card modal, add the description: %s", cardDescription));
-            SeleniumControl cardModalDescription = new SeleniumControl(By.xpath("//*[@class='description-content js-desc-content']//*[@class='field field-autosave js-description-draft description card-description']"));
-            //cardModalDescription.SetText(cardDescription, 5, false);
+            pages.trelloSignInPage.trelloBoardPage.trelloCardPage.SetDescriptionText(cardDescription);
 
-        Step("Save the description");
-            SeleniumControl saveDescription = new SeleniumControl(By.xpath("//*[@class= 'nch-button nch-button--primary confirm mod-submit-edit js-save-edit']"));
-            //saveDescription.Click(5);
+        Step("Verify the description is correct");
+            pages.trelloSignInPage.trelloBoardPage.trelloCardPage.VerifyDescriptionOnCard(cardDescription);
 
-        Step("Close the modal");
-            pages.trelloSignInPage.trelloBoardPage.trelloCardPage.CloseCard();
-
-        // TODO: Verify this was saved: open up card and check description; need method using parent xpath
-        Step("Open the card again and verify the description is correct");
-        // TODO: delete this line once verification is correct; uncomment last step
-        pages.trelloSignInPage.trelloBoardPage.DeleteCard(cardTitle, listNameTodo);
-
-
+            //TODO: this should be in tearDown
         Step("Delete card in modal");
-            //pages.trelloSignInPage.trelloBoardPage.trelloCardPage.DeleteCard();
-
+            pages.trelloSignInPage.trelloBoardPage.trelloCardPage.DeleteCard();
 
     }
 
@@ -170,15 +149,6 @@ public class RSTestSuite extends AutoTestBase {
 
         Step("Delete card in modal");
             pages.trelloSignInPage.trelloBoardPage.trelloCardPage.DeleteCard();
-
-        Step("Verify card is no longer in list");
-        // TODO: ***Extra Credit***  confirm after delete that card is not in list in Board
-            pages.trelloSignInPage.trelloBoardPage.VerifyNoCardsInColumn(listName);
-
-            pages.trelloSignInPage.trelloBoardPage.VerifyCardWasDeleted();
-
-
-
     }
 
     /** Scenario 4: Complete to do Items
@@ -268,7 +238,40 @@ public class RSTestSuite extends AutoTestBase {
         // TODO: this should be done in tearDown
         Step("Delete card in modal");
             pages.trelloSignInPage.trelloBoardPage.trelloCardPage.DeleteCard();
-
     }
+/*
+
+    @Test
+    public void TestDeleteCardWorks() throws Exception
+    {
+        String cardTitle = "my card";
+        String listNameTodo = "To Do";
+
+        Step("Go to Trello Page");
+            pages.GoToURL("https://trello.com/b/0QEdvItb/rt-sdet");
+
+        Step("Log into Trello");
+            pages.trelloSignInPage.LogIntoAccountOnMainPage(email, password);
+
+        Step("Verify RT SDET board is open");
+            pages.trelloSignInPage.trelloBoardPage.VerifyOnSDETBoard();
+
+        Step(String.format("Add a new card titled '%s' to list '%s'", cardTitle, listNameTodo));
+            pages.trelloSignInPage.trelloBoardPage.AddCardToColumn(listNameTodo, cardTitle);
+
+        Step("Verify card was made by opening it");
+            pages.trelloSignInPage.trelloBoardPage.OpenCard(cardTitle, listNameTodo);
+
+        Step("Delete the card");
+            pages.trelloSignInPage.trelloBoardPage.trelloCardPage.DeleteCard();
+
+        Step("Verify card is no longer in list");
+        // TODO: ***Extra Credit***  confirm after delete that card is not in list in Board
+        pages.trelloSignInPage.trelloBoardPage.VerifyNoCardsInColumn(listNameTodo);
+
+        // this works
+        pages.trelloSignInPage.trelloBoardPage.VerifyCardWasDeletedNotArchived();
+    }
+*/
 
 }

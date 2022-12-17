@@ -35,6 +35,10 @@ public class TrelloCardPage extends UIBase {
 
     private final SeleniumControl checkListCompletionPercentage = new SeleniumControl(By.xpath("//*[@class='checklist-progress-percentage js-checklist-progress-percent']"));
 
+    private final SeleniumControl cardModalDescription = new SeleniumControl(By.xpath("//*[@class='field field-autosave js-description-draft description card-description']"));
+
+    private final SeleniumControl saveDescriptionBtn = new SeleniumControl(By.xpath("//*[@class= 'nch-button nch-button--primary confirm mod-submit-edit js-save-edit']"));
+
     public void DeleteCard() throws Exception
     {
         archiveBtn.Click(5);
@@ -94,6 +98,7 @@ public class TrelloCardPage extends UIBase {
             SeleniumControl checkList = new SeleniumControl(By.xpath(xpath));
             Assert.assertTrue(checkList.IsVisible(5));
         }
+        Info("   Checklist verified");
     }
 
     public void CompleteCheckList(ArrayList<String> checkListItems) throws Exception
@@ -112,5 +117,22 @@ public class TrelloCardPage extends UIBase {
         Info("   Checklist complete");
     }
 
+    public void SetDescriptionText(String cardDescription) throws Exception
+    {
+        cardModalDescription.SetText(cardDescription, 5, false);
+        SaveDescription();
+    }
+
+    private void SaveDescription() throws Exception
+    {
+        saveDescriptionBtn.Click(5);
+    }
+
+    public void VerifyDescriptionOnCard(String cardDescription)
+    {
+        SeleniumControl findDescription = new SeleniumControl(By.xpath(String.format("//*[text()='%s']", cardDescription)));
+        findDescription.IsVisible(5);
+        Info("   Description matches");
+    }
 
 }
