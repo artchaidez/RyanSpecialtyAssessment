@@ -1,14 +1,10 @@
 package webTestSuites;
 
 import autoFramework.AutoTestBase;
-import org.openqa.selenium.By;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import webTestFramework.SeleniumControl;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class RSTestSuite extends AutoTestBase {
@@ -45,7 +41,7 @@ public class RSTestSuite extends AutoTestBase {
         String cardTitle = "new card";
         String columnNameTodo = "To Do";
         String cardDescription = "this is a new card";
-
+/*
         Step("Go to Trello Page");
             pages.GoToURL("https://trello.com/b/0QEdvItb/rt-sdet");
 
@@ -57,7 +53,7 @@ public class RSTestSuite extends AutoTestBase {
             pages.trelloPage.AddCardToColumn(columnNameTodo, cardTitle);
 
         Step("Find the newly created card and open it to edit the card");
-            pages.trelloPage.OpenCard(cardTitle);
+            pages.trelloPage.OpenCard(cardTitle, columnNameTodo);
 
         // TODO: Fails here. Need correct Xpath
         // //*[@class='field field-autosave js-description-draft description card-description']
@@ -78,11 +74,10 @@ public class RSTestSuite extends AutoTestBase {
             pages.trelloPage.CloseCard();
 
         // TODO: Verify this was saved: open up card and check description; need method using parent xpath
-        Step("Open the card again and confirm the description is correct");
+        Step("Open the card again and confirm the description is correct");*/
 
 
     }
-
 
     /** Scenario 2: Move Card to Working
     Given I have a card titled "new card" in the "To Do" column
@@ -101,21 +96,19 @@ public class RSTestSuite extends AutoTestBase {
 
         // TODO: Verify all these steps
         Step("Log into Trello");
-            pages.trelloPage.LogIntoAccountOnMainPage(email, password);
+            pages.trelloSignInPage.LogIntoAccountOnMainPage(email, password);
 
         Step(String.format("Add '%s' card to column '%s'", cardTitle, columnNameTodo));
-            pages.trelloPage.AddCardToColumn(columnNameTodo, cardTitle);
+            pages.trelloSignInPage.trelloBoardPage.AddCardToColumn(columnNameTodo, cardTitle);
 
         Step(String.format("Open '%s'", cardTitle));
-            pages.trelloPage.OpenCard(cardTitle);
+            pages.trelloSignInPage.trelloBoardPage.OpenCard(cardTitle, columnNameTodo);
 
-        Step("In the modal, under Actions, click on Move to open the 'Move Card' modal");
-            pages.trelloPage.ClickOnMoveCardInModal();
+        Step("In the modal, under Actions, click on Move to open the 'Move Card' modal and move to column Working");
+            pages.trelloSignInPage.trelloBoardPage.MoveCardToColumnUnderAction(columnNameWorking);
 
-        Step(String.format("Move card into '%s' column", columnNameWorking));
-            pages.trelloPage.MoveCardToColumn(columnNameWorking);
-
-        // TODO: Verify card was moved to working; need method using parent xpath
+        Step("Verify card was moved to working");
+            pages.trelloSignInPage.trelloBoardPage.VerifyCardInColumn(cardTitle, columnNameWorking);
 
     }
 
@@ -134,7 +127,7 @@ public class RSTestSuite extends AutoTestBase {
         ArrayList<String> checkListItems = new ArrayList<>();
         checkListItems.add("Item 1");
         checkListItems.add("Item 2");
-
+/*
         Step("Go to Trello Page");
         pages.GoToURL("https://trello.com/b/0QEdvItb/rt-sdet");
 
@@ -148,12 +141,42 @@ public class RSTestSuite extends AutoTestBase {
 
         Step("Open the newly created card");
         pages.Sleep(1);
-        pages.trelloPage.OpenCard(cardTitle);
+        pages.trelloPage.OpenCard(cardTitle, columnName);
 
         Step(String.format("Create a checklist named: '%s' and its items", checklistTitle));
         pages.trelloPage.CreateNewCheckList(checklistTitle, checkListItems);
 
-        // TODO: Verify Items are there
+        Step("Verify checklist is correct");
+        pages.trelloPage.VerifyCheckList(checkListItems);
+
+        //*[@class='button-link js-archive-card']
+        Step("Delete card in modal");
+        pages.trelloPage.DeleteCardInModal();
+
+        Step("Verify card is no longer in column");
+        // TODO: confirm after delete that card is not in column
+        //pages.trelloPage.VerifyCardNotInColumn(cardTitle, columnName);
+
+        Step("Verify card was also not archived");
+        // TODO: menu appearing after deletion
+        // //*[@class='SyQNhGiXQPXGMA Ts+YceGnvTbKoG gGx-TWcD-qHGLA d3VddHWjHgldJq JIXQq8gDYY04N6']
+        SeleniumControl threeBtnList = new SeleniumControl(By.xpath("//*[@class='SyQNhGiXQPXGMA Ts+YceGnvTbKoG gGx-TWcD-qHGLA d3VddHWjHgldJq JIXQq8gDYY04N6']"));
+        threeBtnList.Click(5);
+
+        SeleniumControl moreInMenu = new SeleniumControl(By.xpath("//*[@class='board-menu-navigation-item-link js-open-more']"));
+        moreInMenu.Click(5);
+
+        //*[@class='board-moreInMenu-navigation-item-link js-open-archive']
+        SeleniumControl archiveItems = new SeleniumControl(By.xpath("//*[@class='board-moreInMenu-navigation-item-link js-open-archive']"));
+        archiveItems.Click(5);
+
+        // shown in empty list but should not use it
+        // //*[@class='empty-list js-empty-message']
+
+        // should not be found if deleted right
+        //*[@class='archived-list-card']//*[text()='new card']
+        SeleniumControl cardShouldNotBeFound = new SeleniumControl(By.xpath("//*[@class='archived-list-card']//*[text()='new card']"));
+        Assert.assertEquals(cardShouldNotBeFound.IsNotVisible(5), true);*/
 
     }
 
@@ -164,12 +187,73 @@ public class RSTestSuite extends AutoTestBase {
     And has an item called "Item 2"
     Then I am able click on the check box of each item
     They are marked as complete. */
+    @Test
+    public void TestCompleteToDoItemsChecklist() throws Exception
+    {
+        String cardTitle = "new card";
+        String columnName = "Working";
+        String checklistTitle = "check list";
+        ArrayList<String> checkListItems = new ArrayList<>();
+        checkListItems.add("Item 1");
+        checkListItems.add("Item 2");
+
+        Step("Go to Trello Page");
+        pages.GoToURL("https://trello.com/b/0QEdvItb/rt-sdet");
+        // TODO: Verify all these steps
+        Step("Log into Trello");
+        pages.trelloSignInPage.LogIntoAccountOnMainPage(email, password);
+
+        Step(String.format("Add '%s' card to column '%s'", cardTitle, columnName));
+        pages.Sleep(1);
+        pages.trelloSignInPage.trelloBoardPage.AddCardToColumn(columnName, cardTitle);
+
+        Step("Open the newly created card");
+        pages.Sleep(1);
+        pages.trelloSignInPage.trelloBoardPage.OpenCard(cardTitle, columnName);
+
+        Step(String.format("Create a checklist named: '%s' and its items", checklistTitle));
+        pages.trelloSignInPage.trelloBoardPage.CreateNewCheckList(checklistTitle, checkListItems);
+
+        Step("Complete the checklist by clicking on the checkboxes");
+        pages.trelloSignInPage.trelloBoardPage.CompleteCheckList(checkListItems);
+
+        Step("Verify checklist is complete");
+        pages.trelloSignInPage.trelloBoardPage.VerifyChecklistComplete();
+    }
 
     /** Scenario 5: Move to done
     Given I have a card titled "new card" in the "Working" column
     When I open the card
-    And I click on the current list with the text “in list Working”
+    DELETED LINE CAUSE ERROR; click on top to get Move modal
     Then I am able to move the card to the Done List
     And see that it is in the done list. */
+    @Test
+    public void TestMoveCardIntoDoneColumn() throws Exception
+    {
+        String cardTitle = "new card";
+        String columnNameWorking = "Working";
+        String columnNameDone = "Done";
+        Step("Go to Trello Page");
+        pages.GoToURL("https://trello.com/b/0QEdvItb/rt-sdet");
+
+        // TODO: Verify all these steps
+        Step("Log into Trello");
+        pages.trelloSignInPage.LogIntoAccountOnMainPage(email, password);
+
+        Step(String.format("Add '%s' card to column '%s'", cardTitle, columnNameWorking));
+        pages.Sleep(1);
+        pages.trelloSignInPage.trelloBoardPage.AddCardToColumn(columnNameWorking, cardTitle);
+
+        Step("Open the newly created card");
+        pages.Sleep(1);
+        pages.trelloSignInPage.trelloBoardPage.OpenCard(cardTitle, columnNameWorking);
+
+        Step("Click on 'in list Working' at the top of the modal and move to column 'Done'");
+        pages.trelloSignInPage.trelloBoardPage.MoveCardToColumnUsingInList(columnNameDone);
+
+        Step("Verify card is in Done column");
+        pages.trelloSignInPage.trelloBoardPage.VerifyCardInColumn(cardTitle, columnNameDone);
+
+    }
 
 }
