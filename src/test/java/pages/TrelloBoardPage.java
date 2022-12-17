@@ -5,13 +5,22 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import webTestFramework.SeleniumControl;
 
-import java.util.ArrayList;
-
 public class TrelloBoardPage extends UIBase {
 
-    // TODO: Create and organize three pages: Sign in Page, main board, card modal
+    private final SeleniumControl inputCardTitleText = new SeleniumControl(By.xpath("//*[@class= 'list-card-composer-textarea js-card-title']"));
 
-    // this class needs card model object
+    private final SeleniumControl addCardBtn = new SeleniumControl(By.xpath("//*[contains(@value, 'Add card')]"));
+
+    private final SeleniumControl showMenuBtn = new SeleniumControl(By.xpath("//*[@class='show-sidebar-button-react-root']"));
+
+    private final SeleniumControl moreInMenuBtn = new SeleniumControl(By.xpath("//*[@class='board-menu-navigation-item-link js-open-more']"));
+
+    private final SeleniumControl archiveItemsBtn = new SeleniumControl(By.xpath("//*[@class='board-menu-navigation-item-link js-open-archive']"));
+
+    private final SeleniumControl noCardsCheck = new SeleniumControl(By.xpath("//*[@class='empty-list js-empty-message']"));
+
+    private final SeleniumControl sdetBoard = new SeleniumControl(By.xpath("//*[@class='js-board-editing-target board-header-btn-text']"));
+
     public TrelloCardPage trelloCardPage;
 
     public TrelloBoardPage()
@@ -26,17 +35,13 @@ public class TrelloBoardPage extends UIBase {
         SeleniumControl list = new SeleniumControl(By.xpath(xpath));
         list.Click(5);
 
-        SeleniumControl inputCardTitle = new SeleniumControl(By.xpath("//*[@class= 'list-card-composer-textarea js-card-title']"));
-        inputCardTitle.SetText(cardTitle, 5, false);
+        inputCardTitleText.SetText(cardTitle, 5, false);
 
-        SeleniumControl addCardBtn = new SeleniumControl(By.xpath("//*[contains(@value, 'Add card')]"));
         addCardBtn.Click(5);
     }
 
-    // TODO: Use same xpath to delete a card. Do this at the end of every test making a new card
     public void OpenCard(String cardTitle, String listName) throws Exception
     {
-        // TODO: This is used in ReturnCardInColumn; refactor
         String xpath = String.format("//*[text()='%s']/parent::div/following-sibling::div[1]//*[text()='%s']", listName, cardTitle);
         SeleniumControl newCard = new SeleniumControl(By.xpath(xpath));
         newCard.Click(5);
@@ -52,8 +57,6 @@ public class TrelloBoardPage extends UIBase {
     }
 
 
-
-    // TODO: VerifyCardNotInColumn not working
     private boolean ReturnCardInColumn(String cardTitle, String listName)
     {
         String xpath = String.format("//*[text()='%s']/parent::div/following-sibling::div[1]//*[text()='%s']", listName, cardTitle);
@@ -67,11 +70,46 @@ public class TrelloBoardPage extends UIBase {
     }
 
     // TODO: Fix
-    public void VerifyCardNotInColumn(String cardTitle, String listName)
+    public void VerifyNoCardsInColumn(String columnName)
     {
-        String xpath = String.format("//*[text()='%s']/parent::div/following-sibling::div[1]//*[text()='%s']", listName, cardTitle);
+
+        // //*[@class='list-header-num-cards hide js-num-cards']
+        // //*[text()='Working']/parent::div//*[text()='0 cards']
+        // //*[text()='%s']/parent::div//*[@class='list-header-num-cards hide js-num-cards']
+        String xpath = String.format("//*[text()='Working']/parent::div//*[text()='0 cards']", columnName);
         SeleniumControl card = new SeleniumControl(By.xpath(xpath));
-        Assert.assertTrue(card.IsNotVisible(5));
+        String word = card.getAttribute("class");
+        //Assert.assertEquals(card.getText(), "0 cards");
+    }
+
+    public void VerifyCardWasDeleted() throws Exception
+    {
+        Info("   Verify card is not archived");
+            /* BUG: Sometimes Menu is open. Does not create issues interacting with List, but does when trying to
+            * check archive. Try/catch is to take proper steps to correctly check archive regardless of this bug.*/
+            try
+            {
+                moreInMenuBtn.IsVisible(5);
+
+            } catch(Exception e) {
+                Info("Open Menu");
+                showMenuBtn.Click(5);
+            }
+
+        Info("   Click on 'More' option in menu");
+            moreInMenuBtn.Click(5);
+
+        Info("    Click on 'Archived items'");
+            archiveItemsBtn.Click(5);
+
+        Info("   Verifying archive is empty");
+            noCardsCheck.IsVisible(5);
+    }
+
+    public void VerifyOnSDETBoard()
+    {
+        sdetBoard.IsVisible(5);
+        Info("   On SDET Board");
     }
 
 }

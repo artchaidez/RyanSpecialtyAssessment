@@ -9,23 +9,45 @@ import java.util.ArrayList;
 
 public class TrelloCardPage extends UIBase {
 
+    private final SeleniumControl archiveBtn = new SeleniumControl(By.xpath("//*[@class='button-link js-archive-card']"));
+
+    private final SeleniumControl deleteBtn = new SeleniumControl(By.xpath("//*[@class='button-link js-delete-card negate']"));
+
+    private final SeleniumControl confirmDeleteBtn = new SeleniumControl(By.xpath("//*[@class='js-confirm full nch-button nch-button--danger']"));
+
+    private final SeleniumControl closeCard = new SeleniumControl(By.xpath("//*[@class= 'icon-md icon-close dialog-close-button js-close-window']"));
+
+    private final SeleniumControl moveCardToNewList = new SeleniumControl(By.xpath("//*[@class='nch-button nch-button--primary wide js-submit']"));
+
+    private final SeleniumControl underActionsMoveBtn = new SeleniumControl(By.xpath("//*[@class='button-link js-move-card']"));
+
+    private final SeleniumControl inHeaderMoveBtn = new SeleniumControl(By.xpath("//*[@class= 'js-open-move-from-header']"));
+
+    private final SeleniumControl checkListBtn = new SeleniumControl(By.xpath("//*[@class='button-link js-add-checklist-menu']"));
+
+    private final SeleniumControl checkListTitleText = new SeleniumControl(By.xpath("//*[@id='id-checklist']"));
+
+    private final SeleniumControl addCheckListBtn = new SeleniumControl(By.xpath("//*[@class='nch-button nch-button--primary wide confirm js-add-checklist']"));
+
+    private final SeleniumControl addItemToChecklistText = new SeleniumControl(By.xpath("//*[@class='edit field checklist-new-item-text js-new-checklist-item-input']"));
+
+    private final SeleniumControl addItemToCheckListText = new SeleniumControl(By.xpath("//*[@class='nch-button nch-button--primary confirm mod-submit-edit js-add-checklist-item']"));
+
+    private final SeleniumControl checkListCompletionPercentage = new SeleniumControl(By.xpath("//*[@class='checklist-progress-percentage js-checklist-progress-percent']"));
 
     public void DeleteCard() throws Exception
     {
-        SeleniumControl archiveBtn = new SeleniumControl(By.xpath("//*[@class='button-link js-archive-card']"));
         archiveBtn.Click(5);
 
-        SeleniumControl deleteBtn = new SeleniumControl(By.xpath("//*[@class='button-link js-delete-card negate']"));
         deleteBtn.Click(5);
 
-        SeleniumControl confirmDelete = new SeleniumControl(By.xpath("//*[@class='js-confirm full nch-button nch-button--danger']"));
-        confirmDelete.Click(5);
+        confirmDeleteBtn.Click(5);
+        Info("   Card deleted");
     }
 
     public void CloseCard() throws Exception
     {
-        SeleniumControl closeCardModal = new SeleniumControl(By.xpath("//*[@class= 'icon-md icon-close dialog-close-button js-close-window']"));
-        closeCardModal.Click(5);
+        closeCard.Click(5);
     }
 
     private void MoveCardToColumn(String listName) throws Exception
@@ -34,45 +56,35 @@ public class TrelloCardPage extends UIBase {
         SeleniumControl workingOnMoveCardList = new SeleniumControl(By.xpath(xpath));
         workingOnMoveCardList.Click(5);
 
-        SeleniumControl clickMove = new SeleniumControl(By.xpath("//*[@class='nch-button nch-button--primary wide js-submit']"));
-        clickMove.Click(5);
+        moveCardToNewList.Click(5);
     }
 
     /** Same functionality as MoveCardToColumnUsingInList*/
     public void MoveCardToColumnUnderAction(String listName) throws Exception
     {
-        SeleniumControl moveBtn = new SeleniumControl(By.xpath("//*[@class='button-link js-move-card']"));
-        moveBtn.Click(5);
+        underActionsMoveBtn.Click(5);
         MoveCardToColumn(listName);
     }
 
     /** Same functionality as MoveCardToColumnUnderAction*/
     public void MoveCardToColumnUsingInList(String listName) throws Exception
     {
-        SeleniumControl inList = new SeleniumControl(By.xpath("//*[@class= 'js-open-move-from-header']"));
-        inList.Click(5);
+        inHeaderMoveBtn.Click(5);
         MoveCardToColumn(listName);
     }
 
     public void CreateNewCheckList(String checklistTitle, ArrayList<String> checkListItems) throws Exception
     {
-        SeleniumControl checkListBtn = new SeleniumControl(By.xpath("//*[@class='button-link js-add-checklist-menu']"));
         checkListBtn.Click(5);
 
-        SeleniumControl checkListInput = new SeleniumControl(By.xpath("//*[@id='id-checklist']"));
-        checkListInput.SetText(checklistTitle, 5, false);
+        checkListTitleText.SetText(checklistTitle, 5, false);
 
-        SeleniumControl checkListAdd = new SeleniumControl(By.xpath("//*[@class='nch-button nch-button--primary wide confirm js-add-checklist']"));
-        checkListAdd.Click(5);
-
-        SeleniumControl addItemText = new SeleniumControl(By.xpath("//*[@class='edit field checklist-new-item-text js-new-checklist-item-input']"));
-
-        SeleniumControl addItem = new SeleniumControl(By.xpath("//*[@class='nch-button nch-button--primary confirm mod-submit-edit js-add-checklist-item']"));
+        addCheckListBtn.Click(5);
 
         for (int i = 0; i < checkListItems.size(); i++)
         {
-            addItemText.SetText(checkListItems.get(i), 5, false);
-            addItem.Click(5);
+            addItemToChecklistText.SetText(checkListItems.get(i), 5, false);
+            addItemToCheckListText.Click(5);
         }
     }
 
@@ -96,8 +108,8 @@ public class TrelloCardPage extends UIBase {
 
     public void VerifyChecklistComplete()
     {
-        SeleniumControl progressBar = new SeleniumControl(By.xpath("//*[@class='checklist-progress-percentage js-checklist-progress-percent']"));
-        Assert.assertEquals(progressBar.getText(), "100%");
+        Assert.assertEquals(checkListCompletionPercentage.getText(), "100%");
+        Info("   Checklist complete");
     }
 
 

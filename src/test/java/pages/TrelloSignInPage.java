@@ -6,13 +6,13 @@ import webTestFramework.SeleniumControl;
 public class TrelloSignInPage {
     private final SeleniumControl logInMainPageBtn = new SeleniumControl(By.xpath("//*[@class='seg6b92uUYbLu1']"));
 
-    private final SeleniumControl emailInput = new SeleniumControl(By.xpath("//*[@id='user']"));
+    private final SeleniumControl emailText = new SeleniumControl(By.xpath("//*[@id='user']"));
 
     private final SeleniumControl continueBtn = new SeleniumControl(By.xpath("//*[@id='login']"));
 
-    private final SeleniumControl passwordInput = new SeleniumControl(By.xpath("//*[@id = 'password']"));
+    private final SeleniumControl passwordText = new SeleniumControl(By.xpath("//*[@id = 'password']"));
 
-    private final SeleniumControl logInBtn = new SeleniumControl(By.xpath("//*[@id = 'login-submit']"));
+    private final SeleniumControl finalLogInBtn = new SeleniumControl(By.xpath("//*[@id = 'login-submit']"));
 
 
     public TrelloBoardPage trelloBoardPage;
@@ -29,7 +29,7 @@ public class TrelloSignInPage {
 
     public void SetEmailText(String email) throws Exception
     {
-        emailInput.SetText(email, 5, false);
+        emailText.SetText(email, 5, false);
     }
 
     public void ClickOnMainPageContinue() throws Exception
@@ -39,12 +39,12 @@ public class TrelloSignInPage {
 
     public void SetPasswordText(String password) throws Exception
     {
-        passwordInput.SetText(password, 5, false);
+        passwordText.SetText(password, 5, false);
     }
 
     public void ClickOnLogInButton() throws Exception
     {
-        logInBtn.Click(5);
+        finalLogInBtn.Click(5);
     }
 
     // TODO: Should these methods being called be private? If public, test them?
