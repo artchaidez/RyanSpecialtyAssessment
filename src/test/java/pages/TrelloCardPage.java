@@ -41,11 +41,13 @@ public class TrelloCardPage extends UIBase {
 
     public void DeleteCard() throws Exception
     {
-        archiveBtn.Click(5);
+        archiveBtn.Click(10);
 
-        deleteBtn.Click(5);
+        deleteBtn.Click(200);
+        // TODO: sometimes not deleting. Going to fast?
+        Sleep(1);
 
-        confirmDeleteBtn.Click(5);
+        confirmDeleteBtn.Click(200);
         Info("   Card deleted");
     }
 

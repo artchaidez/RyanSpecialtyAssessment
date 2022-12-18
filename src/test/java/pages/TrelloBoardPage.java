@@ -71,16 +71,30 @@ public class TrelloBoardPage extends UIBase {
     }
 
     // TODO: Fix
-    public void VerifyNoCardsInColumn(String columnName)
+    public void VerifyNoCardsInColumn(String listName)
     {
+        boolean noCards = false;
+        String xpathChild = String.format("//*[text()='%s']/parent::div/parent::div//*[@class='list-cards u-fancy-scrollbar u-clearfix js-list-cards js-sortable ui-sortable']//child::*", listName);
 
-        // //*[@class='list-header-num-cards hide js-num-cards']
-        // //*[text()='Working']/parent::div//*[text()='0 cards']
-        // //*[text()='%s']/parent::div//*[@class='list-header-num-cards hide js-num-cards']
-        String xpath = String.format("//*[text()='Working']/parent::div//*[text()='0 cards']", columnName);
-        SeleniumControl card = new SeleniumControl(By.xpath(xpath));
-        String word = card.getAttribute("class");
-        //Assert.assertEquals(card.getText(), "0 cards");
+        SeleniumControl card = new SeleniumControl(By.xpath(xpathChild));
+        try {
+            // Look for children in the list
+            // If there are no children, it should be caught and log there are no cards
+            card.IsVisible(5);
+
+        }catch (Exception e)
+        {
+            noCards = true;
+        }
+
+        if (noCards)
+        {
+            Info(String.format("   '%s' has no cards", listName));
+        } else {
+            // If code hits here, the list has children and the card was not properly deleted
+            Info(String.format("   FAILED: There is a card in '%s'", listName));
+            Assert.assertFalse(true);
+        }
     }
 
     public void VerifyCardWasDeletedNotArchived() throws Exception
@@ -100,7 +114,7 @@ public class TrelloBoardPage extends UIBase {
         Info("   Click on 'More' option in menu");
             moreInMenuBtn.Click(5);
 
-        Info("    Click on 'Archived items'");
+        Info("   Click on 'Archived items'");
             archiveItemsBtn.Click(5);
 
         Info("   Verifying archive is empty");

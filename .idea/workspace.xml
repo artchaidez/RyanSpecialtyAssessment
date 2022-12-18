@@ -6,8 +6,24 @@
   <component name="ChangeListManager">
     <list default="true" id="914d3150-6a39-41fb-9036-1bf9e1fb6f0b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/apiModals/Address.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/apiModals/BankInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/apiModals/EmploymentInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/apiModals/IncomeInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/apiModals/Offer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/apiModals/PersonalInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/apiModals/Request.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/apiTestSuites/OppFiTestSuite.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/apis/Apis.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/apis/OffersApi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/autoFramework/AutoTestBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/autoFramework/AutoTestBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/Pages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/Pages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/PodiumBubble.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/pages/PodiumModal.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/pages/TrelloBoardPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/TrelloBoardPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/pages/TrelloCardPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/TrelloCardPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/webTestFramework/SeleniumControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/webTestFramework/SeleniumControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/webTestSuites/PodiumTestSuite.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/webTestSuites/RSTestSuite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/webTestSuites/RSTestSuite.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -106,6 +122,29 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="RSTestSuite.TestAddCheckListWithItems" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;webTestSuites.RSTestSuite.TestAddCheckListWithItems&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <configuration name="RSTestSuite.TestCompleteToDoItemsChecklist" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -120,29 +159,6 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;webTestSuites.RSTestSuite.TestCompleteToDoItemsChecklist&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="RSTestSuite.TestCreateNewCardInTodo" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;webTestSuites.RSTestSuite.TestCreateNewCardInTodo&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -203,15 +219,15 @@
       <item itemvalue="Gradle.RSTestSuite.TestCompleteToDoItemsChecklist" />
       <item itemvalue="Gradle.RSTestSuite.TestDeleteCardWorks" />
       <item itemvalue="Gradle.RSTestSuite.TestMoveCardIntoDoneColumn" />
-      <item itemvalue="Gradle.RSTestSuite.TestCreateNewCardInTodo" />
+      <item itemvalue="Gradle.RSTestSuite.TestAddCheckListWithItems" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.RSTestSuite" />
-        <item itemvalue="Gradle.RSTestSuite.TestDeleteCardWorks" />
-        <item itemvalue="Gradle.RSTestSuite.TestCreateNewCardInTodo" />
-        <item itemvalue="Gradle.RSTestSuite.TestMoveCardIntoDoneColumn" />
         <item itemvalue="Gradle.RSTestSuite.TestCompleteToDoItemsChecklist" />
+        <item itemvalue="Gradle.RSTestSuite.TestMoveCardIntoDoneColumn" />
+        <item itemvalue="Gradle.RSTestSuite.TestDeleteCardWorks" />
+        <item itemvalue="Gradle.RSTestSuite.TestAddCheckListWithItems" />
       </list>
     </recent_temporary>
   </component>
@@ -241,29 +257,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/pages/TrelloBoardPage.java</url>
-          <line>80</line>
-          <option name="timeStamp" value="64" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/pages/PodiumModal.java</url>
-          <line>86</line>
-          <option name="timeStamp" value="65" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/webTestSuites/RSTestSuite.java</url>
-          <line>199</line>
-          <option name="timeStamp" value="67" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/webTestSuites/RSTestSuite.java</url>
-          <line>60</line>
+          <line>55</line>
           <option name="timeStamp" value="74" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/webTestSuites/RSTestSuite.java</url>
-          <line>269</line>
-          <option name="timeStamp" value="75" />
+          <url>file://$PROJECT_DIR$/src/test/java/pages/TrelloBoardPage.java</url>
+          <line>78</line>
+          <option name="timeStamp" value="77" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
