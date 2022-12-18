@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="914d3150-6a39-41fb-9036-1bf9e1fb6f0b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/autoFramework/ApiBase.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/TrelloBoardPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/TrelloBoardPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/pages/TrelloCardPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/TrelloCardPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/pages/TrelloSignInPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/pages/TrelloSignInPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/webTestSuites/RSTestSuite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/webTestSuites/RSTestSuite.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,24 +63,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/artch/IdeaProjects/testframework",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "com.intellij.jarRepository.settings.RemoteRepositoriesConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/artch/IdeaProjects/testframework&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.jarRepository.settings.RemoteRepositoriesConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\artch\IdeaProjects\QAFramework\Assessments" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.RSTestSuite">
+  <component name="RunManager" selected="Gradle.RSTestSuite.TestDropDownAddCardOption">
     <configuration name="RSTestSuite" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -108,7 +104,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="RSTestSuite.TestCompleteToDoItemsChecklist" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="RSTestSuite.TestCreateNewCardInTodo" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -121,7 +117,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;webTestSuites.RSTestSuite.TestCompleteToDoItemsChecklist&quot;" />
+            <option value="&quot;webTestSuites.RSTestSuite.TestCreateNewCardInTodo&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -131,7 +127,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="RSTestSuite.TestDeleteCardOnBoard" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="RSTestSuite.TestDeleteCardInCard" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -144,30 +140,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;webTestSuites.RSTestSuite.TestDeleteCardOnBoard&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="RSTestSuite.TestDeleteCardWorks" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;webTestSuites.RSTestSuite.TestDeleteCardWorks&quot;" />
+            <option value="&quot;webTestSuites.RSTestSuite.TestDeleteCardInCard&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -200,20 +173,43 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="RSTestSuite.TestMoveCardIntoDoneColumn" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;webTestSuites.RSTestSuite.TestMoveCardIntoDoneColumn&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
     <list>
+      <item itemvalue="Gradle.RSTestSuite.TestCreateNewCardInTodo" />
+      <item itemvalue="Gradle.RSTestSuite.TestDeleteCardInCard" />
+      <item itemvalue="Gradle.RSTestSuite.TestMoveCardIntoDoneColumn" />
       <item itemvalue="Gradle.RSTestSuite" />
-      <item itemvalue="Gradle.RSTestSuite.TestCompleteToDoItemsChecklist" />
-      <item itemvalue="Gradle.RSTestSuite.TestDeleteCardOnBoard" />
-      <item itemvalue="Gradle.RSTestSuite.TestDeleteCardWorks" />
       <item itemvalue="Gradle.RSTestSuite.TestDropDownAddCardOption" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.RSTestSuite" />
         <item itemvalue="Gradle.RSTestSuite.TestDropDownAddCardOption" />
-        <item itemvalue="Gradle.RSTestSuite.TestDeleteCardOnBoard" />
-        <item itemvalue="Gradle.RSTestSuite.TestDeleteCardWorks" />
-        <item itemvalue="Gradle.RSTestSuite.TestCompleteToDoItemsChecklist" />
+        <item itemvalue="Gradle.RSTestSuite.TestDeleteCardInCard" />
+        <item itemvalue="Gradle.RSTestSuite.TestMoveCardIntoDoneColumn" />
+        <item itemvalue="Gradle.RSTestSuite" />
+        <item itemvalue="Gradle.RSTestSuite.TestCreateNewCardInTodo" />
       </list>
     </recent_temporary>
   </component>

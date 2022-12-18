@@ -24,27 +24,27 @@ public class TrelloSignInPage {
 
     public void ClickOnMainPageLogIn() throws Exception
     {
-        logInMainPageBtn.Click(5);
+        logInMainPageBtn.Click(15);
     }
 
     public void SetEmailText(String email) throws Exception
     {
-        emailText.SetText(email, 5, false);
+        emailText.SetText(email, 15, false);
     }
 
     public void ClickOnMainPageContinue() throws Exception
     {
-        continueBtn.Click(5);
+        continueBtn.Click(15);
     }
 
     public void SetPasswordText(String password) throws Exception
     {
-        passwordText.SetText(password, 5, false);
+        passwordText.SetText(password, 15, false);
     }
 
     public void ClickOnLogInButton() throws Exception
     {
-        finalLogInBtn.Click(5);
+        finalLogInBtn.Click(15);
     }
 
     public void LogIntoAccountOnMainPage(String email, String password) throws Exception
