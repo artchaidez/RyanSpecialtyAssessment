@@ -1,6 +1,3 @@
-# QAFramework
-Java QA Framework
-
 Download IntelliJ Community \
 https://www.jetbrains.com/idea/download/#section=mac \
 https://www.jetbrains.com/idea/download/#section=windows 
