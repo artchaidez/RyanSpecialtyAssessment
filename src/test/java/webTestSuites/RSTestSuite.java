@@ -1,9 +1,11 @@
 package webTestSuites;
 
 import autoFramework.AutoTestBase;
+import org.openqa.selenium.By;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import webTestFramework.SeleniumControl;
 
 import java.util.ArrayList;
 
@@ -17,7 +19,6 @@ public class RSTestSuite extends AutoTestBase {
         pages.InitWebDriver();
         email = System.getenv("trelloEmail");
         password = System.getenv("trelloPassword");
-
     }
 
     @AfterMethod
@@ -26,9 +27,6 @@ public class RSTestSuite extends AutoTestBase {
         pages.Quit();
         ResetSteps();
     }
-
-    // TODO: ** Extra Credit ** Click on hover edit icon that appears on card; currently only clicking on card
-    // TODO: ** Extra Credit ** click 'Add a card' by three-dot dropdown menu; currently only clicking on card
 
     @Test(description = "Scenario 1: Create a card in the To Do list")
     public void TestCreateNewCardInTodo() throws Exception
@@ -202,8 +200,8 @@ public class RSTestSuite extends AutoTestBase {
             pages.trelloSignInPage.trelloBoardPage.trelloCardPage.DeleteCard();
     }
 
-    @Test(description = "Testing that delete methods used other tests work")
-    public void TestDeleteCardWorks() throws Exception
+    @Test(description = "Testing card can be deleted within card")
+    public void TestDeleteCardInCard() throws Exception
     {
         String cardTitle = "my card";
         String listNameTodo = "To Do";
@@ -220,10 +218,36 @@ public class RSTestSuite extends AutoTestBase {
         Step(String.format("Add a new card titled '%s' to list '%s'", cardTitle, listNameTodo));
             pages.trelloSignInPage.trelloBoardPage.AddCardToColumn(listNameTodo, cardTitle);
 
-        Step("Verify card was made by opening it");
-            pages.trelloSignInPage.trelloBoardPage.OpenCard(cardTitle, listNameTodo);
+        Step("Verify card was made by deleting it");
+            pages.trelloSignInPage.trelloBoardPage.DeleteCard(cardTitle, listNameTodo);
 
-        Step("Delete the card");
+        Step("Verify card is no longer in list");
+            pages.trelloSignInPage.trelloBoardPage.VerifyNoCardsInColumn(listNameTodo);
+
+        Step("Verify card was not archived only and properly deleted");
+            pages.trelloSignInPage.trelloBoardPage.VerifyCardWasDeletedNotArchived();
+    }
+
+    @Test(description = "Verify card can be deleted on board")
+    public void TestDeleteCardOnBoard() throws Exception
+    {
+        String cardTitle = "my card";
+        String listNameTodo = "To Do";
+
+        Step("Go to Trello Page");
+            pages.GoToURL("https://trello.com/b/0QEdvItb/rt-sdet");
+
+        Step("Log into Trello");
+            pages.trelloSignInPage.LogIntoAccountOnMainPage(email, password);
+
+        Step("Verify RT SDET board is open");
+            pages.trelloSignInPage.trelloBoardPage.VerifyOnSDETBoard();
+
+        Step(String.format("Add a new card titled '%s' to list '%s'", cardTitle, listNameTodo));
+            pages.trelloSignInPage.trelloBoardPage.AddCardToColumn(listNameTodo, cardTitle);
+
+        Step("Verify card was made by deleting it");
+            pages.trelloSignInPage.trelloBoardPage.OpenCard(cardTitle,listNameTodo);
             pages.trelloSignInPage.trelloBoardPage.trelloCardPage.DeleteCard();
 
         Step("Verify card is no longer in list");
@@ -231,6 +255,31 @@ public class RSTestSuite extends AutoTestBase {
 
         Step("Verify card was not archived only and properly deleted");
             pages.trelloSignInPage.trelloBoardPage.VerifyCardWasDeletedNotArchived();
+    }
+
+    @Test(description = "Provide a second way to add a card to a list")
+    public void TestDropDownAddCardOption() throws Exception
+    {
+        String cardTitle = "my card";
+        String listNameTodo = "To Do";
+
+        Step("Go to Trello Page");
+            pages.GoToURL("https://trello.com/b/0QEdvItb/rt-sdet");
+
+        Step("Log into Trello");
+            pages.trelloSignInPage.LogIntoAccountOnMainPage(email, password);
+
+        Step("Verify RT SDET board is open");
+            pages.trelloSignInPage.trelloBoardPage.VerifyOnSDETBoard();
+
+        Step("Add card using List actions dropdown");
+            pages.trelloSignInPage.trelloBoardPage.DropDownActionsAddCard(cardTitle, listNameTodo);
+
+        Step("Verify card was made");
+            pages.trelloSignInPage.trelloBoardPage.VerifyCardInColumn(cardTitle, listNameTodo);
+
+        Step("Verify card was made by deleting");
+            pages.trelloSignInPage.trelloBoardPage.DeleteCard(cardTitle, listNameTodo);
     }
 
 }

@@ -28,7 +28,6 @@ public class TrelloBoardPage extends UIBase {
         trelloCardPage = new TrelloCardPage();
     }
 
-
     public void AddCardToColumn(String listName, String cardTitle) throws Exception
     {
         String xpath = String.format("//*[text()='%s']/parent::div/following-sibling::div[2]//*[text()='Add a card']", listName);
@@ -57,20 +56,19 @@ public class TrelloBoardPage extends UIBase {
     }
 
 
-    private boolean ReturnCardInColumn(String cardTitle, String listName)
+    private boolean IsCardInColumn(String cardTitle, String listName)
     {
         String xpath = String.format("//*[text()='%s']/parent::div/following-sibling::div[1]//*[text()='%s']", listName, cardTitle);
         SeleniumControl card = new SeleniumControl(By.xpath(xpath));
         return card.IsVisible(5);
     }
 
-    public void VerifyCardInColumn(String cardTitle, String listName) throws Exception
+    public void VerifyCardInColumn(String cardTitle, String listName)
     {
-        Assert.assertTrue(ReturnCardInColumn(cardTitle, listName));
+        Assert.assertTrue(IsCardInColumn(cardTitle, listName));
         Info(String.format("   Card '%s' is in list '%s'", cardTitle, listName));
     }
 
-    // TODO: Fix
     public void VerifyNoCardsInColumn(String listName)
     {
         boolean noCards = false;
@@ -127,5 +125,24 @@ public class TrelloBoardPage extends UIBase {
         Info("   On SDET Board");
     }
 
+    private void DropDownActions(String listName) throws Exception
+    {
+        String xpath = String.format("//*[text()='%s']/parent::div//*[@class='list-header-extras-menu dark-hover js-open-list-menu icon-sm icon-overflow-menu-horizontal']", listName);
+        SeleniumControl dropDownListBtn = new SeleniumControl(By.xpath(xpath));
+        dropDownListBtn.Click(5);
+    }
 
+    public void DropDownActionsAddCard(String cardTitle, String listName) throws Exception
+    {
+        String xpath = String.format("//*[text()='%s']/parent::div//*[@class='list-header-extras-menu dark-hover js-open-list-menu icon-sm icon-overflow-menu-horizontal']", listName);
+        SeleniumControl dropDownListBtn = new SeleniumControl(By.xpath(xpath));
+        dropDownListBtn.Click(5);
+
+        SeleniumControl addCard = new SeleniumControl(By.xpath("//*[@class='js-add-card']"));
+        addCard.Click(5);
+
+        inputCardTitleText.SetText(cardTitle, 5, false);
+
+        addCardBtn.Click(5);
+    }
 }

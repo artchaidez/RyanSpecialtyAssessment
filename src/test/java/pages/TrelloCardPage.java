@@ -39,15 +39,14 @@ public class TrelloCardPage extends UIBase {
 
     private final SeleniumControl saveDescriptionBtn = new SeleniumControl(By.xpath("//*[@class= 'nch-button nch-button--primary confirm mod-submit-edit js-save-edit']"));
 
+    private final SeleniumControl sdetBoard = new SeleniumControl(By.xpath("//*[@class='js-board-editing-target board-header-btn-text']"));
+
     public void DeleteCard() throws Exception
     {
-        archiveBtn.Click(10);
-
-        deleteBtn.Click(200);
-        // TODO: sometimes not deleting. Going to fast?
-        Sleep(1);
-
-        confirmDeleteBtn.Click(200);
+        archiveBtn.Click(5);
+        deleteBtn.Click(5);
+        confirmDeleteBtn.Click(5);
+        sdetBoard.IsVisible(5);
         Info("   Card deleted");
     }
 

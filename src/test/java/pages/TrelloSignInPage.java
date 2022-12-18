@@ -47,7 +47,6 @@ public class TrelloSignInPage {
         finalLogInBtn.Click(5);
     }
 
-    // TODO: Should these methods being called be private? If public, test them?
     public void LogIntoAccountOnMainPage(String email, String password) throws Exception
     {
         ClickOnMainPageLogIn();
