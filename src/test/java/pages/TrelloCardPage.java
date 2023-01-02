@@ -2,7 +2,6 @@ package pages;
 
 import autoFramework.UIBase;
 import org.openqa.selenium.By;
-import org.testng.Assert;
 import webTestFramework.SeleniumControl;
 
 import java.util.ArrayList;
@@ -93,15 +92,6 @@ public class TrelloCardPage extends UIBase {
         }
     }
 
-    public void VerifyCheckList(ArrayList<String> checkListItems) {
-        for (int i = 0; i < checkListItems.size(); i++) {
-            String xpath = String.format("//*[@class='checklist-items-list js-checklist-items-list js-no-higher-edits ui-sortable']//*[text()='%s']", checkListItems.get(i));
-            SeleniumControl checkList = new SeleniumControl(By.xpath(xpath));
-            Assert.assertTrue(checkList.IsVisible(5));
-        }
-        Info("   Checklist verified");
-    }
-
     public void CompleteCheckList(ArrayList<String> checkListItems) throws Exception
     {
         for (int i = 0; i < checkListItems.size(); i++) {
@@ -110,12 +100,6 @@ public class TrelloCardPage extends UIBase {
             checkList.Click(5);
             Sleep(1);
         }
-    }
-
-    public void VerifyChecklistComplete()
-    {
-        Assert.assertEquals(checkListCompletionPercentage.getText(), "100%");
-        Info("   Checklist complete");
     }
 
     public void SetDescriptionText(String cardDescription) throws Exception
@@ -129,11 +113,14 @@ public class TrelloCardPage extends UIBase {
         saveDescriptionBtn.Click(5);
     }
 
-    public void VerifyDescriptionOnCard(String cardDescription)
+    public SeleniumControl FindDescription(String cardDescription)
     {
-        SeleniumControl findDescription = new SeleniumControl(By.xpath(String.format("//*[text()='%s']", cardDescription)));
-        findDescription.IsVisible(5);
-        Info("   Description matches");
+        return new SeleniumControl(By.xpath(String.format("//*[text()='%s']", cardDescription)));
+    }
+
+    public String ReturnChecklistCompletionPercentage()
+    {
+        return checkListCompletionPercentage.getText();
     }
 
 }
